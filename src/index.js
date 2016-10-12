@@ -8,6 +8,10 @@ console.log(ttr);
 let d = document.getElementById('TextTrackRenderer');
 ttr.attach(d);
 
+// Adds TextTrack
+let t = document.querySelector('track');
+ttr.addTextTrack(t);
+
 // Below for notes only
 /*
 // With PDK Dependency
