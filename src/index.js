@@ -1,14 +1,14 @@
 import TextTrackRenderer from './texttrackrenderer';
 
+// Instantiates TextTrackRenderer
 const ttr = new TextTrackRenderer();
 console.log(ttr);
 
-let t = document.querySelector('track');
-console.log(t);
-console.log('Calling Attach Method... ' + ttr.attach(t));
+// User chooses div to pass to attach handler
+let d = document.getElementById('TextTrackRenderer');
+console.log('Calling Attach Method... ' + ttr.attach(d));
 
-// fix pathing
-
+// Below for notes only
 /*
 // With PDK Dependency
 $pdk.controller.addEventListener('OnTextTracksAvailable', function(e){

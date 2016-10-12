@@ -1,7 +1,7 @@
 export default class TextTrackRenderer {
-  constructor() {}
+  constructor = () => {}
 
-  attach() {
+  attach = (div) => {
     return "Hello World!";
   }
 }
