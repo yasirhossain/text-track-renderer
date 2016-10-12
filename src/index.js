@@ -3,6 +3,10 @@ import TextTrackRenderer from './texttrackrenderer';
 const ttr = new TextTrackRenderer();
 console.log(ttr);
 
+let t = document.querySelector('track');
+console.log(t);
+console.log('Calling Attach Method... ' + ttr.attach(t));
+
 /*
 // With PDK Dependency
 $pdk.controller.addEventListener('OnTextTracksAvailable', function(e){
