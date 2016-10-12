@@ -6,7 +6,7 @@ console.log(ttr);
 
 // User chooses div to pass to attach handler
 let d = document.getElementById('TextTrackRenderer');
-console.log('Calling Attach Method... ' + ttr.attach(d));
+console.log(ttr.attach(d));
 
 // Below for notes only
 /*
