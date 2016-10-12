@@ -3,8 +3,8 @@ export default class TextTrackRenderer {
 
   attach = (element) => {
     this.element = element;
-    this.string = 'Hello World!';
-    this.element.innerHTML= `<span>${this.string}</span>`;
+    let string = 'Hello World!';
+    this.element.innerHTML= `<span>${string}</span>`;
     return this.element;
   }
 }
