@@ -7,6 +7,8 @@ let t = document.querySelector('track');
 console.log(t);
 console.log('Calling Attach Method... ' + ttr.attach(t));
 
+// fix pathing
+
 /*
 // With PDK Dependency
 $pdk.controller.addEventListener('OnTextTracksAvailable', function(e){
