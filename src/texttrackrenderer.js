@@ -1,7 +1,6 @@
 export default function() {
-  let divElement
-  let trackElement
-  let textTrack
+  let divElement,
+      trackElement
 
   function attach(div) {
     if (div.tagName) divElement = div
@@ -11,10 +10,11 @@ export default function() {
   function addTextTrack(track) {
     if (divElement == null) console.log(`attach div container using .attach() first`)
     else {
+      console.log(track);
       if (track.tagName) {
         trackElement = track
         trackElement.addEventListener('load', function() {
-          textTrack = this.track
+          let textTrack = this.track
           for (let cue of textTrack.cues) {
             layoutManager(cue)
           }
