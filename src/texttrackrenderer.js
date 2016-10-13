@@ -1,4 +1,4 @@
-export default function() {
+const TextTrackRenderer = () => {
   let divElement,
       trackElement
 
@@ -33,3 +33,5 @@ export default function() {
     addTextTrack
   }
 }
+
+module.exports = TextTrackRenderer

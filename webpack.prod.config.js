@@ -5,28 +5,16 @@ module.exports = {
   devtool: 'source-map',
 
   entry: [
-    './src/index'
+    './src/texttrackrenderer'
   ],
 
   output: {
     path: path.join(__dirname, 'dist/public'),
-    filename: 'bundle.js',
+    filename: 'texttrackrenderer.js',
+    libraryTarget: 'var',
+    library: 'TextTrackRenderer',
     publicPath: '/dist/public/'
   },
-
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ],
 
   module: {
     loaders: [

@@ -5,7 +5,7 @@ const ttr = new TextTrackRenderer()
 console.log(ttr)
 
 // User chooses div to pass to attach handler
-let d = document.getElementById('TextTrackRenderer')
+let d = document.getElementById('trackRenderer')
 ttr.attach(d)
 
 // Adds TextTrack
