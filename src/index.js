@@ -2,7 +2,7 @@ import TextTrackRenderer from './texttrackrenderer';
 
 // Instantiates TextTrackRenderer
 const ttr = new TextTrackRenderer();
-console.log(ttr);
+// console.log(ttr);
 
 // User chooses div to pass to attach handler
 let d = document.getElementById('TextTrackRenderer');
