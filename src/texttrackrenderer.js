@@ -10,7 +10,6 @@ export default function() {
   function addTextTrack(track) {
     if (divElement == null) console.log(`attach div container using .attach() first`)
     else {
-      console.log(track);
       if (track.tagName) {
         trackElement = track
         trackElement.addEventListener('load', function() {

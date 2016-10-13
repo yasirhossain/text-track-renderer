@@ -59,9 +59,3 @@ node_modules
 Session.vim
 .netrwhist
 *~
-
-dist/public/index.html
-
-dist/public/bundle.js.map
-
-dist/public/bundle.js
