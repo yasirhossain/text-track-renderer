@@ -16,6 +16,17 @@ module.exports = {
     publicPath: '/dist/public/'
   },
 
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: false
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ],
+
   module: {
     loaders: [
       { test: /\.js?$/,
