@@ -1,25 +1,32 @@
 export default function() {
-  let divElement;
-  let trackElement;
+  let divElement
+  let trackElement
+  let textTrack
 
   function attach(div) {
-    divElement = div;
-    // layoutManager({text: 'Hello World!'});
+    if (div.tagName) divElement = div
+    else console.log(`${div} is not an HTML div container`)
   }
 
   function addTextTrack(track) {
-    trackElement = track;
-    trackElement.addEventListener('load', function() {
-      const textTrack = this.track;
-      for (let cue of textTrack.cues) {
-        layoutManager(cue);
+    if (divElement == null) console.log(`attach div container using .attach() first`)
+    else {
+      if (track.tagName) {
+        trackElement = track
+        trackElement.addEventListener('load', function() {
+          textTrack = this.track
+          for (let cue of textTrack.cues) {
+            layoutManager(cue)
+          }
+        })
       }
-    });
+      else console.log(`${track} is not an HTML track container`)
+    }
   }
 
   function layoutManager(cue) {
-    divElement.innerHTML = divElement.innerHTML + `<span>${cue.text}</span>`;
-    console.log(cue);
+    divElement.innerHTML = divElement.innerHTML + `<span>${cue.text}</span>`
+    console.log(cue)
   }
 
   return {

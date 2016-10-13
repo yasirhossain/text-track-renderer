@@ -1,16 +1,16 @@
-import TextTrackRenderer from './texttrackrenderer';
+import TextTrackRenderer from './texttrackrenderer'
 
 // Instantiates TextTrackRenderer
-const ttr = new TextTrackRenderer();
-// console.log(ttr);
+const ttr = new TextTrackRenderer()
+console.log(ttr)
 
 // User chooses div to pass to attach handler
-let d = document.getElementById('TextTrackRenderer');
-ttr.attach(d);
+let d = document.getElementById('TextTrackRenderer')
+ttr.attach(d)
 
 // Adds TextTrack
-let t = document.querySelector('track');
-ttr.addTextTrack(t);
+let t = document.querySelector('track')
+ttr.addTextTrack(t)
 
 // Below for notes only
 /*
