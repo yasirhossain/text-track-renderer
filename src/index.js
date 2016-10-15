@@ -10,7 +10,12 @@ ttr.attach(d)
 
 // Adds TextTrack
 let t = document.querySelector('track')
-ttr.addTextTrack(t)
+// ttr.addTextTrack(t)
+
+setTimeout(function() {
+  ttr.addTextTrack(t)
+  // dynamically add a track
+}, 1000)
 
 // Below for notes only
 /*
