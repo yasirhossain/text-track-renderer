@@ -63,37 +63,41 @@ var TextTrackRenderer =
 	  }
 	
 	  function addTextTrack(track) {
-	    if (divElement == null) console.log('attach div container using .attach() first');else {
-	      if (track.tagName) {
-	        trackElement = track;
-	        trackElement.addEventListener('load', function () {
-	          var textTrack = this.track;
-	          var _iteratorNormalCompletion = true;
-	          var _didIteratorError = false;
-	          var _iteratorError = undefined;
+	    if (divElement == null) console.log('attach div container using .attach() first');
+	    if (track == null) console.log('please add track first');else {
+	      trackElement = track;
+	      if (trackElement.tagName === 'TRACK') loadTrack();else console.log(track + ' is not an HTML track container');
+	    }
+	  }
 	
-	          try {
-	            for (var _iterator = textTrack.cues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	              var cue = _step.value;
+	  function loadTrack() {
+	    if (trackElement.readyState == 2) loopTrack();else if (trackElement.addEventListener) trackElement.addEventListener('load', loadTrack, false);else trackElement.attachEvent('onload', loadTrack);
+	  }
 	
-	              layoutManager(cue);
-	            }
-	          } catch (err) {
-	            _didIteratorError = true;
-	            _iteratorError = err;
-	          } finally {
-	            try {
-	              if (!_iteratorNormalCompletion && _iterator.return) {
-	                _iterator.return();
-	              }
-	            } finally {
-	              if (_didIteratorError) {
-	                throw _iteratorError;
-	              }
-	            }
-	          }
-	        });
-	      } else console.log(track + ' is not an HTML track container');
+	  function loopTrack() {
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+	
+	    try {
+	      for (var _iterator = trackElement.track.cues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var cue = _step.value;
+	
+	        layoutManager(cue);
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
 	    }
 	  }
 	
