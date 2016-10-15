@@ -23,7 +23,10 @@
 
       // Adds TextTrack
       let t = document.querySelector('track');
-      ttr.addTextTrack(t);
+
+      setTimeout(function() {
+        ttr.addTextTrack(t)
+      }, 1000)
     </script>
   </body>
 </html>
