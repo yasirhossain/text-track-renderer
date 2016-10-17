@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div class="container">
+      <video controls controls crossorigin=anonymous>
+        <source src="http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/developerStories-en.mp4" type='video/webm; codecs="vp8, vorbis"' />
+        <source src="http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/developerStories-en.webm" type='video/mp4;' />
+        <track kind="subtitles" label="English subtitles" src="http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/subs-en.vtt" srclang="en" default></track>
+        <track kind="subtitles" label="Spanish subtitles" src="http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/subs-en.vtt" srclang="sp"></track>
+      </video>
+      <div id="trackRenderer"></div>
+    </div>
+    <script type="text/javascript" src="texttrackrenderer.js"></script>
+    <script type="text/javascript">
+      // Instantiates TextTrackRenderer
+      const ttr = new TextTrackRenderer;
+
+      // User chooses div to pass to attach handler
+      let d = document.getElementById('trackRenderer');
+      ttr.attach(d);
+
+      // Adds TextTrack
+      let vt = document.querySelector('video').textTracks[0]
+      setTimeout(function() {
+        ttr.addTextTrack(vt)
+      }, 1000)
+    </script>
+  </body>
+</html>
