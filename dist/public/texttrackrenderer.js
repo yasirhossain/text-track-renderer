@@ -54,36 +54,37 @@ var TextTrackRenderer =
 
 	'use strict';
 	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
 	var TextTrackRenderer = function TextTrackRenderer() {
-	  var divElement = void 0,
-	      trackElement = void 0;
+	  var divElement = void 0;
 	
-	  function attach(div) {
+	  var attach = function attach(div) {
 	    if (div.tagName) divElement = div;else console.log(div + ' is not an HTML div container');
-	  }
+	  };
 	
-	  function addTextTrack(track) {
+	  var addTextTrack = function addTextTrack(track) {
 	    if (divElement == null) console.log('attach div container using .attach() first');
-	    if (track == null) console.log('please add track first');else {
-	      trackElement = track;
-	      if (trackElement.tagName === 'TRACK') loadTrack();else console.log(track + ' is not an HTML track container');
-	    }
-	  }
+	    if (track == null) console.log('please add track first');else loadTrack(track);
+	  };
 	
-	  function loadTrack() {
-	    if (trackElement.readyState == 2) loopTrack();else if (trackElement.addEventListener) trackElement.addEventListener('load', loadTrack, false);else trackElement.attachEvent('onload', loadTrack);
-	  }
+	  var loadTrack = function loadTrack(track) {
+	    var trackObj = track;
+	    if (!isElement(trackObj) && (typeof trackObj === 'undefined' ? 'undefined' : _typeof(trackObj)) == 'object') renderCues(trackObj);else if (trackObj.readyState == 2) renderCues(trackObj.track);else console.log('The ' + (typeof trackObj === 'undefined' ? 'undefined' : _typeof(trackObj)) + ' "' + trackObj + '" is not a valid track');
+	  };
 	
-	  function loopTrack() {
+	  var renderCues = function renderCues(obj) {
+	    var trackObj = obj;
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
 	    var _iteratorError = undefined;
 	
 	    try {
-	      for (var _iterator = trackElement.track.cues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	      for (var _iterator = trackObj.cues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	        var cue = _step.value;
 	
-	        layoutManager(cue);
+	        divElement.innerHTML = divElement.innerHTML + ('<span>' + cue.text + '</span>');
+	        console.log(cue);
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;
@@ -99,12 +100,11 @@ var TextTrackRenderer =
 	        }
 	      }
 	    }
-	  }
+	  };
 	
-	  function layoutManager(cue) {
-	    divElement.innerHTML = divElement.innerHTML + ('<span>' + cue.text + '</span>');
-	    console.log(cue);
-	  }
+	  var isElement = function isElement(obj) {
+	    return (typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === 'object' ? obj instanceof HTMLElement : obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === 'string';
+	  };
 	
 	  return {
 	    attach: attach,

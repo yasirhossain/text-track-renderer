@@ -2,7 +2,6 @@ import TextTrackRenderer from './texttrackrenderer'
 
 // Instantiates TextTrackRenderer
 const ttr = new TextTrackRenderer()
-console.log(ttr)
 
 // User chooses div to pass to attach handler
 let d = document.getElementById('trackRenderer')
@@ -10,12 +9,12 @@ ttr.attach(d)
 
 // Adds TextTrack
 let t = document.querySelector('track')
-// ttr.addTextTrack(t)
+let vt = document.querySelector('video').textTracks[0]
 
 setTimeout(function() {
-  ttr.addTextTrack(t)
+  ttr.addTextTrack(vt)
   // dynamically add a track
-}, 1000)
+}, 2000)
 
 // Below for notes only
 /*
