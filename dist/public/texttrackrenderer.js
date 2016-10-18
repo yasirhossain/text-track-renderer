@@ -68,44 +68,38 @@ var TextTrackRenderer =
 	    if (div == null) console.log('attach div container using .attach() first');
 	    if (obj == null) console.log('please add track first');else {
 	      track = obj;
-	      if (isElement(track)) loadTrack(track, track.track);else loadTrack(document.querySelector('track'), track); // <-- This should be a more precise selector
+	      if (isElement(track)) loadTrack(track.track);else if ((typeof track === 'undefined' ? 'undefined' : _typeof(track)) == 'object') loadTrack(track);else console.log('the ' + (typeof track === 'undefined' ? 'undefined' : _typeof(track)) + ' ' + track + ' is not a valid track object');
 	    }
 	  };
 	
-	  var loadTrack = function loadTrack(elem, obj) {
-	    var trackElem = elem,
-	        trackObj = obj;
-	    if (trackElem.readyState == 2) renderCues(trackObj);else if (trackElem.addEventListener) trackElem.addEventListener('load', function () {
-	      loadTrack(trackElem, trackObj);
-	    }, false);else trackElem.attachEvent('onload', function () {
-	      loadTrack(trackElem, trackObj);
-	    });
+	  var loadTrack = function loadTrack(obj) {
+	    track = obj;
+	    track.oncuechange = function () {
+	      renderCues();
+	    };
 	  };
 	
-	  var renderCues = function renderCues(obj) {
-	    var trackObj = obj;
-	    if ((typeof trackObj === 'undefined' ? 'undefined' : _typeof(trackObj)) !== 'object') console.log('The ' + (typeof trackObj === 'undefined' ? 'undefined' : _typeof(trackObj)) + ' "' + trackObj + '" is not a valid track');else {
-	      var _iteratorNormalCompletion = true;
-	      var _didIteratorError = false;
-	      var _iteratorError = undefined;
+	  var renderCues = function renderCues() {
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
 	
+	    try {
+	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var cue = _step.value;
+	        div.innerHTML = '<span>' + cue.text + '</span>';
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
 	      try {
-	        for (var _iterator = trackObj.cues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	          var _cue = _step.value;
-	          div.innerHTML = div.innerHTML + ('<span>' + _cue.text + '</span>');
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
 	        }
-	      } catch (err) {
-	        _didIteratorError = true;
-	        _iteratorError = err;
 	      } finally {
-	        try {
-	          if (!_iteratorNormalCompletion && _iterator.return) {
-	            _iterator.return();
-	          }
-	        } finally {
-	          if (_didIteratorError) {
-	            throw _iteratorError;
-	          }
+	        if (_didIteratorError) {
+	          throw _iteratorError;
 	        }
 	      }
 	    }

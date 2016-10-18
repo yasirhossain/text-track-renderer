@@ -11,10 +11,11 @@ ttr.attach(d)
 let t = document.querySelector('track')
 let vt = document.querySelector('video').textTracks[0]
 
-ttr.addTextTrack(vt)
+//ttr.addTextTrack(vt)
+//ttr.addTextTrack(t)
 
 setTimeout(function() {
-  // ttr.addTextTrack(vt)
+  ttr.addTextTrack(vt)
   // dynamically add a track
 }, 1000)
 

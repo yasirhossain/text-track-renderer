@@ -12,23 +12,19 @@ const TextTrackRenderer = () => {
     if (obj == null) console.log(`please add track first`)
     else {
       track = obj
-      if (isElement(track)) loadTrack(track, track.track)
-      else loadTrack(document.querySelector('track'), track) // <-- This should be a more precise selector
+      if (isElement(track)) loadTrack(track.track)
+      else if (typeof track == 'object') loadTrack(track)
+      else console.log(`the ${typeof track} ${track} is not a valid track object`)
     }
   }
 
-  const loadTrack = (elem, obj) => {
-    let trackElem = elem,
-        trackObj  = obj
-    if (trackElem.readyState == 2) renderCues(trackObj)
-    else if (trackElem.addEventListener) trackElem.addEventListener('load', function() {loadTrack(trackElem, trackObj)}, false);
-    else trackElem.attachEvent('onload', function() {loadTrack(trackElem, trackObj)})
+  const loadTrack = (obj) => {
+    track = obj
+    track.oncuechange = () => { renderCues() }
   }
 
-  const renderCues = (obj) => {
-    let trackObj = obj
-    if (typeof trackObj !== 'object') console.log(`The ${typeof trackObj} "${trackObj}" is not a valid track`)
-    else for (let cue of trackObj.cues) div.innerHTML = div.innerHTML + `<span>${cue.text}</span>`
+  const renderCues = () => {
+    for (let cue of track.activeCues) div.innerHTML = `<span>${cue.text}</span>`
   }
 
   const isElement = (obj) => {
