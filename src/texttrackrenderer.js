@@ -24,6 +24,7 @@ const TextTrackRenderer = () => {
 
   const renderCues = () => {
     div.innerHTML = ''
+    console.log(track.activeCues)
     for (let cue of track.activeCues) div.innerHTML = div.innerHTML + `<span>${cue.text}</span>`
   }
 

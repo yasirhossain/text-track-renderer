@@ -80,6 +80,7 @@ var TextTrackRenderer =
 	
 	  var renderCues = function renderCues() {
 	    div.innerHTML = '';
+	    console.log(track.activeCues);
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
 	    var _iteratorError = undefined;
