@@ -11,10 +11,9 @@ const TextTrackRenderer = () => {
     if (div == null) console.log(`attach div container using .attach() first`)
     if (obj == null) console.log(`please add track first`)
     else {
-      track = obj
-      if (isElement(track)) loadTrack(track.track)
-      else if (typeof track == 'object') loadTrack(track)
-      else console.log(`the ${typeof track} ${track} is not a valid track object`)
+      if (isElement(obj)) loadTrack(obj.track)
+      else if (typeof obj == 'object') loadTrack(obj)
+      else console.log(`the ${typeof obj} ${obj} is not a valid track object`)
     }
   }
 
@@ -24,7 +23,8 @@ const TextTrackRenderer = () => {
   }
 
   const renderCues = () => {
-    for (let cue of track.activeCues) div.innerHTML = `<span>${cue.text}</span>`
+    div.innerHTML = ''
+    for (let cue of track.activeCues) div.innerHTML = div.innerHTML + `<span>${cue.text}</span>`
   }
 
   const isElement = (obj) => {

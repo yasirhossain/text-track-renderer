@@ -67,8 +67,7 @@ var TextTrackRenderer =
 	  var addTextTrack = function addTextTrack(obj) {
 	    if (div == null) console.log('attach div container using .attach() first');
 	    if (obj == null) console.log('please add track first');else {
-	      track = obj;
-	      if (isElement(track)) loadTrack(track.track);else if ((typeof track === 'undefined' ? 'undefined' : _typeof(track)) == 'object') loadTrack(track);else console.log('the ' + (typeof track === 'undefined' ? 'undefined' : _typeof(track)) + ' ' + track + ' is not a valid track object');
+	      if (isElement(obj)) loadTrack(obj.track);else if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object') loadTrack(obj);else console.log('the ' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + ' ' + obj + ' is not a valid track object');
 	    }
 	  };
 	
@@ -80,6 +79,7 @@ var TextTrackRenderer =
 	  };
 	
 	  var renderCues = function renderCues() {
+	    div.innerHTML = '';
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
 	    var _iteratorError = undefined;
@@ -87,7 +87,7 @@ var TextTrackRenderer =
 	    try {
 	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	        var cue = _step.value;
-	        div.innerHTML = '<span>' + cue.text + '</span>';
+	        div.innerHTML = div.innerHTML + ('<span>' + cue.text + '</span>');
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;

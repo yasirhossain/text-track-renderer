@@ -16,7 +16,6 @@ let vt = document.querySelector('video').textTracks[0]
 
 setTimeout(function() {
   ttr.addTextTrack(vt)
-  // dynamically add a track
 }, 1000)
 
 // Below for notes only
