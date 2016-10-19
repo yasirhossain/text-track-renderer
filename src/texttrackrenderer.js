@@ -1,9 +1,15 @@
 const TextTrackRenderer = () => {
   let div,
-      track
+      track,
+      cueHeight, cueFontSize
 
   const attach = (element) => {
-    if (element.tagName) div = element
+    if (element.tagName) {
+      div = element
+      div.style.position = 'relative'
+      cueHeight = div.offsetHeight / 15
+      cueFontSize = cueHeight * .8
+    }
     else console.log(`${div} is not an HTML div container`)
   }
 
@@ -23,9 +29,14 @@ const TextTrackRenderer = () => {
   }
 
   const renderCues = () => {
-    div.innerHTML = ''
-    console.log(track.activeCues)
-    for (let cue of track.activeCues) div.innerHTML = div.innerHTML + `<span>${cue.text}</span>`
+    let cueContainer = `<div class="ttrCues" style="position:absolute;left:50%;top:auto;bottom:0;"></div>`,
+        cueStyle     = `color:#fff;text-align:center;background-color:#000;display:block;position:relative;left:-50%;
+                        height:${cueHeight}px;
+                        font-size:${cueFontSize}px;`
+    div.innerHTML = cueContainer
+    for (let cue of track.activeCues) {
+      div.childNodes[0].innerHTML += `<span style="${cueStyle}">${cue.text}</span>`
+    }
   }
 
   const isElement = (obj) => {

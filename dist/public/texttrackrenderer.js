@@ -58,10 +58,17 @@ var TextTrackRenderer =
 	
 	var TextTrackRenderer = function TextTrackRenderer() {
 	  var div = void 0,
-	      track = void 0;
+	      track = void 0,
+	      cueHeight = void 0,
+	      cueFontSize = void 0;
 	
 	  var attach = function attach(element) {
-	    if (element.tagName) div = element;else console.log(div + ' is not an HTML div container');
+	    if (element.tagName) {
+	      div = element;
+	      div.style.position = 'relative';
+	      cueHeight = div.offsetHeight / 15;
+	      cueFontSize = cueHeight * .8;
+	    } else console.log(div + ' is not an HTML div container');
 	  };
 	
 	  var addTextTrack = function addTextTrack(obj) {
@@ -79,8 +86,9 @@ var TextTrackRenderer =
 	  };
 	
 	  var renderCues = function renderCues() {
-	    div.innerHTML = '';
-	    console.log(track.activeCues);
+	    var cueContainer = '<div class="ttrCues" style="position:absolute;left:50%;top:auto;bottom:0;"></div>',
+	        cueStyle = 'color:#fff;text-align:center;background-color:#000;display:block;position:relative;left:-50%;\n                        height:' + cueHeight + 'px;\n                        font-size:' + cueFontSize + 'px;';
+	    div.innerHTML = cueContainer;
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
 	    var _iteratorError = undefined;
@@ -88,7 +96,8 @@ var TextTrackRenderer =
 	    try {
 	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	        var cue = _step.value;
-	        div.innerHTML = div.innerHTML + ('<span>' + cue.text + '</span>');
+	
+	        div.childNodes[0].innerHTML += '<span style="' + cueStyle + '">' + cue.text + '</span>';
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;
