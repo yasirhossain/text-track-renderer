@@ -92,7 +92,7 @@ var TextTrackRenderer =
 	        cueStyle       = `color:#fff;background-color:#000;padding:2px 5px;`
 	    */
 	    var cueContainer = '<div class="ttrCues" style="position:absolute;left:0;bottom:0;width:100%;"></div>',
-	        cueStyle = 'min-height:' + cueHeight + 'px;width:100%;text-align:center;position:relative;font-size:' + cueFontSize + 'px;color:#fff;background-color:#000;padding:2px 5px;',
+	        cueStyle = 'height:' + cueHeight + 'px;width:100%;text-align:center;position:relative;font-size:' + cueFontSize + 'px;color:#fff;background-color:#000;padding:2px 5px;',
 	        cueStyleElem = '<style>.ttrCues span:before{display:block;background-color:transparent;}</style>';
 	
 	    div.innerHTML = cueStyleElem + cueContainer;
