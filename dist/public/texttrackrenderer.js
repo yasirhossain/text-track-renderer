@@ -86,9 +86,16 @@ var TextTrackRenderer =
 	  };
 	
 	  var renderCues = function renderCues() {
-	    var cueContainer = '<div class="ttrCues" style="position:absolute;left:50%;top:auto;bottom:0;"></div>',
-	        cueStyle = 'color:#fff;text-align:center;background-color:#000;display:block;position:relative;left:-50%;\n                        height:' + cueHeight + 'px;\n                        font-size:' + cueFontSize + 'px;';
-	    div.innerHTML = cueContainer;
+	    /*
+	    let cueContainer   = `<div class="ttrCues" style="position:absolute;left:0;bottom:0;width:100%;"></div>`,
+	        rowStyle       = `min-height:${cueHeight}px;width:100%;text-align:center;position:relative;font-size:${cueFontSize}px;`,
+	        cueStyle       = `color:#fff;background-color:#000;padding:2px 5px;`
+	    */
+	    var cueContainer = '<div class="ttrCues" style="position:absolute;left:0;bottom:0;width:100%;"></div>',
+	        cueStyle = 'min-height:' + cueHeight + 'px;width:100%;text-align:center;position:relative;font-size:' + cueFontSize + 'px;color:#fff;background-color:#000;padding:2px 5px;',
+	        cueStyleElem = '<style>.ttrCues span:before{display:block;background-color:transparent;}</style>';
+	
+	    div.innerHTML = cueStyleElem + cueContainer;
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
 	    var _iteratorError = undefined;
@@ -97,7 +104,8 @@ var TextTrackRenderer =
 	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	        var cue = _step.value;
 	
-	        div.childNodes[0].innerHTML += '<span style="' + cueStyle + '">' + cue.text + '</span>';
+	        console.log(cue);
+	        div.childNodes[1].innerHTML += '<span style="' + cueStyle + '">' + cue.text + '</span>';
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;
