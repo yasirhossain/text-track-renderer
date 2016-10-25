@@ -1,4 +1,5 @@
 import TextTrackRenderer from './texttrackrenderer'
+// import Hls from 'hls.js'
 
 // Instantiates TextTrackRenderer
 const ttr = new TextTrackRenderer()
@@ -13,6 +14,17 @@ let vt = document.querySelector('video').textTracks[0]
 
 //ttr.addTextTrack(vt)
 //ttr.addTextTrack(t)
+
+if(Hls.isSupported()) {
+  var video = document.querySelector('video')
+  var hls = new Hls()
+  hls.loadSource('http://cdn3.videos.bloomberg.com/btv/us/master.m3u8')
+  hls.attachMedia(video)
+  hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
+    video.play()
+    console.log(data)
+  })
+}
 
 setTimeout(function() {
   ttr.addTextTrack(vt)

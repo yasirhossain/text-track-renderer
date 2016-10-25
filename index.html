@@ -2,16 +2,17 @@
 <head>
     <title>Text Track Renderer Demo</title>
     <link rel="shortcut icon" href="">
+    <script src="/dist/public/hls.js"></script>
     <style>
       body {
         padding: 0;
         margin: 0;
+        background: black;
       }
       .container {
         position: relative;
         height: 100%;
         width: 100%;
-        background: black;
         text-align: center;
       }
       #trackRenderer {
@@ -24,11 +25,14 @@
 </head>
 <body>
   <div class="container">
+    <!--
     <video controls crossorigin=anonymous>
       <source src="http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/developerStories-en.mp4" type='video/webm; codecs="vp8, vorbis"' />
       <source src="http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/developerStories-en.webm" type='video/mp4;' />
       <track kind="subtitles" label="English subtitles" src="/dist/public/video/subs-en.vtt" srclang="en" default></track>
     </video>
+    -->
+    <video controls crossorigin=anonymous></video>
     <div id="trackRenderer"></div>
   </div>
   <script type="text/javascript" src="/dist/public/bundle.js"></script>
