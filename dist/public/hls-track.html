@@ -39,6 +39,10 @@
       // Instantiates TextTrackRenderer
       const ttr = new TextTrackRenderer;
 
+      // User chooses div to pass to attach handler
+      let d = document.getElementById('trackRenderer');
+      ttr.attach(d);
+
       if(Hls.isSupported()) {
         var video = document.querySelector('video')
         var hls = new Hls()
@@ -49,17 +53,9 @@
           console.log(data)
           setTimeout(function() {
             ttr.setTextTrack(document.querySelector("video").textTracks[0]);
-          }, 5000)
+          }, 10000)
         })
       }
-
-      // User chooses div to pass to attach handler
-      let d = document.getElementById('trackRenderer');
-      ttr.attach(d);
-
-      // Adds TextTrack
-      let vt = document.querySelector('video').textTracks[0]
-      ttr.setTextTrack(vt)
     </script>
   </body>
 </html>
