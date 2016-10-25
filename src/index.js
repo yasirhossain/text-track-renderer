@@ -23,12 +23,17 @@ if(Hls.isSupported()) {
   hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
     video.play()
     console.log(data)
+    setTimeout(function() {
+      ttr.setTextTrack(document.querySelector("video").textTracks[0]);
+    }, 5000)
   })
 }
 
+/*
 setTimeout(function() {
   ttr.setTextTrack(vt)
 }, 1000)
+*/
 
 // Below for notes only
 /*

@@ -34,6 +34,7 @@ const TextTrackRenderer = () => {
         cueStyleElem   = `<style>.ttrCues span:after{display:block;content:"";background-color:transparent;} .ttrCues span:last-child:after{content:initial;}</style>`
 
     div.innerHTML = cueStyleElem + cueContainer
+    console.log(track.activeCues)
     for (let cue of track.activeCues) {
       div.childNodes[1].innerHTML += `<span style="${cueStyle}">${cue.text}</span>`
     }
