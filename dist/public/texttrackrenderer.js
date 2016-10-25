@@ -71,7 +71,7 @@ var TextTrackRenderer =
 	    } else console.log(div + ' is not an HTML div container');
 	  };
 	
-	  var addTextTrack = function addTextTrack(obj) {
+	  var setTextTrack = function setTextTrack(obj) {
 	    if (div == null) console.log('attach div container using .attach() first');
 	    if (obj == null) console.log('please add track first');else {
 	      if (isElement(obj)) loadTrack(obj.track);else if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object') loadTrack(obj);else console.log('the ' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + ' ' + obj + ' is not a valid track object');
@@ -123,7 +123,7 @@ var TextTrackRenderer =
 	
 	  return {
 	    attach: attach,
-	    addTextTrack: addTextTrack
+	    setTextTrack: setTextTrack
 	  };
 	};
 	

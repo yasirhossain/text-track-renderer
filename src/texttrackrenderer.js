@@ -13,7 +13,7 @@ const TextTrackRenderer = () => {
     else console.log(`${div} is not an HTML div container`)
   }
 
-  const addTextTrack = (obj) => {
+  const setTextTrack = (obj) => {
     if (div == null) console.log(`attach div container using .attach() first`)
     if (obj == null) console.log(`please add track first`)
     else {
@@ -47,7 +47,7 @@ const TextTrackRenderer = () => {
 
   return {
     attach,
-    addTextTrack
+    setTextTrack
   }
 }
 

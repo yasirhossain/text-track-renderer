@@ -12,8 +12,8 @@ ttr.attach(d)
 let t = document.querySelector('track')
 let vt = document.querySelector('video').textTracks[0]
 
-//ttr.addTextTrack(vt)
-//ttr.addTextTrack(t)
+//ttr.setTextTrack(vt)
+//ttr.setTextTrack(t)
 
 if(Hls.isSupported()) {
   var video = document.querySelector('video')
@@ -27,7 +27,7 @@ if(Hls.isSupported()) {
 }
 
 setTimeout(function() {
-  ttr.addTextTrack(vt)
+  ttr.setTextTrack(vt)
 }, 1000)
 
 // Below for notes only
