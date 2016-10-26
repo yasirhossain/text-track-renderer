@@ -1,19 +1,19 @@
 WEBVTT FILE
 
 1
-00:00:00.500 --> 00:00:02.000 D:vertical A:start
+00:00:00.500 --> 00:00:02.000 A:start T:50%
 The Web is always changing
 
 2
-00:00:01.000 --> 00:00:04.300
+00:00:01.000 --> 00:00:04.300 A:end D:vertical-lr
 and the way we access it is changing
 
 3
-00:00:05.000 --> 00:00:07.000
+00:00:05.000 --> 00:00:07.000 A:start T:100% L:0%
 The source of that change is <c.highlight>you</c>
 
 4
-00:00:07.100 --> 00:00:11.000
+00:00:07.100 --> 00:00:11.000 D:vertical-lr A:start
 Developers all around the world who are using our tools to create great new things (and more copy to see new line)
 
 5
