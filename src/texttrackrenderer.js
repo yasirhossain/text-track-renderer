@@ -25,7 +25,7 @@ const TextTrackRenderer = () => {
 
   const loadTrack = (obj) => {
     track = obj
-    track.oncuechange = () => { renderCues() }
+    track.oncuechange = () => renderCues()
   }
 
   const renderCues = () => {
@@ -35,15 +35,13 @@ const TextTrackRenderer = () => {
 
     div.innerHTML = cueStyleElem + cueContainer
     console.log(track.activeCues)
-    for (let cue of track.activeCues) {
+    for (let cue of track.activeCues)
       div.childNodes[1].innerHTML += `<span style="${cueStyle}">${cue.text}</span>`
-    }
   }
 
   const isElement = (obj) => {
-    return (
+    return
       typeof HTMLElement === 'object' ? obj instanceof HTMLElement : obj && typeof obj === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName==='string'
-    )
   }
 
   return {

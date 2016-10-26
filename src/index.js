@@ -25,7 +25,7 @@ if(Hls.isSupported()) {
     console.log(data)
     setTimeout(function() {
       ttr.setTextTrack(document.querySelector("video").textTracks[0]);
-    }, 5000)
+    }, 10000)
   })
 }
 
