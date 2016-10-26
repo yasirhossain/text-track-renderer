@@ -31,7 +31,6 @@ ttr.attach(d)
 
 const defaultLoader = () => {
     video.removeAttribute('src')
-    video.pause()
     video.load()
     video.play()
     video.innerHTML = ''
@@ -63,5 +62,5 @@ const hlsLoader = () => {
 document.getElementById('btn-default').addEventListener('click', defaultLoader)
 document.getElementById('btn-hls').addEventListener('click', hlsLoader)
 
-//ttr.setTextTrack(vt)
+ttr.setTextTrack(vt)
 //ttr.setTextTrack(t)

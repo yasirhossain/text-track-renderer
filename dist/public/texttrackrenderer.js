@@ -81,7 +81,7 @@ var TextTrackRenderer =
 	  var loadTrack = function loadTrack(obj) {
 	    track = obj;
 	    track.oncuechange = function () {
-	      renderCues();
+	      return renderCues();
 	    };
 	  };
 	
@@ -119,7 +119,8 @@ var TextTrackRenderer =
 	  };
 	
 	  var isElement = function isElement(obj) {
-	    return (typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === 'object' ? obj instanceof HTMLElement : obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === 'string';
+	    return;
+	    (typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === 'object' ? obj instanceof HTMLElement : obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === 'string';
 	  };
 	
 	  return {
