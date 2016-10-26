@@ -14,7 +14,7 @@ let video = document.querySelector('video'),
       ],
       tracks: [
         {
-          src: '/dist/public/video/subs-en.vtt',
+          src: 'http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/subs-en.vtt',
           label: 'English subtitles',
           kind: 'subtitles',
           srclang: 'en'
