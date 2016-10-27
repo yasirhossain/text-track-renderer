@@ -29,14 +29,31 @@ const TextTrackRenderer = () => {
   }
 
   const renderCues = () => {
-    let cueContainer   = `<div class="ttrCues" style="position:absolute;left:0;bottom:0;width:100%;"></div>`,
-        cueStyle       = `height:${cueHeight}px;width:100%;text-align:center;position:relative;font-size:${cueFontSize}px;color:#fff;background-color:#000;padding:2px 5px;`,
-        cueStyleElem   = `<style>.ttrCues span:after{display:block;content:"";background-color:transparent;} .ttrCues span:last-child:after{content:initial;}</style>`
+    let cueContainer   = `<div class="ttrCues"></div>`,
+        cueDefStyles   = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
+        cueStyleElem   =
+        `<style>
+          .ttrCues {
+            position:absolute;
+            left:0;bottom:0;
+            width:100%;
+          }
+          .ttrCues span {
+            text-align:center;
+            position:relative;
+            color:#fff;
+            background-color:#000;
+          }
+          .ttrCues span:after{display:block;content:"";background-color:transparent;}
+          .ttrCues span:last-child:after{content:initial;}
+          .ttrCues span.start{float:left;}
+          .ttrCues span.right{float:right;}
+        </style>`
 
     div.innerHTML = cueStyleElem + cueContainer
     console.log(track.activeCues)
     for (let cue of track.activeCues)
-      div.childNodes[1].innerHTML += `<span style="${cueStyle}">${cue.text}</span>`
+      div.childNodes[1].innerHTML += `<span class="${cue.align}" style="${cueDefStyles}">${cue.text}</span>`
   }
 
   const isElement = (obj) => {
