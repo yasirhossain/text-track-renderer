@@ -60,18 +60,17 @@ var TextTrackRenderer =
 	  var div = void 0,
 	      track = void 0,
 	      cueHeight = void 0,
-	      cueFontSize = void 0;
+	      cueFontSize = void 0,
+	      cuePosition = void 0;
 	
 	  var attach = function attach(element) {
 	    if (element.tagName) {
-	      var cueStyleElem = '<style>\n        .ttrCues {\n          position:absolute;\n          left:0;bottom:0;\n          width:100%;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:relative;\n          color:#fff;\n          background-color:#000;\n          clear:both;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}\n        .ttrCues .ttrCue.right{float:right;}\n      </style>',
+	      var cueStyleElem = '<style>\n        .ttrCues {\n          position:absolute;\n          left:0;bottom:0;\n          width:100%;\n          font-family: Helvetica, sans;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:relative;\n          color:#fff;\n          background-color:#000;\n          clear:both;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}\n        .ttrCues .ttrCue.right{float:right;}\n      </style>',
 	          cueContainer = '<div class="ttrCues"></div>';
 	
 	      div = element;
 	      div.style.position = 'relative';
 	      div.innerHTML = cueStyleElem + cueContainer;
-	      cueHeight = div.offsetHeight / 15;
-	      cueFontSize = cueHeight * .8;
 	    } else console.log(div + ' is not an HTML div container');
 	  };
 	
@@ -90,10 +89,11 @@ var TextTrackRenderer =
 	  };
 	
 	  var renderCues = function renderCues() {
-	    var cueContainer = '<div class="ttrCues"></div>',
+	    var cueHeight = div.offsetHeight / 15,
+	        cueFontSize = cueHeight * .8,
+	        cuePosition = 'position:relative;bottom:auto;',
 	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;';
 	
-	    console.log(track.activeCues);
 	    div.childNodes[1].innerHTML = '';
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
@@ -104,7 +104,10 @@ var TextTrackRenderer =
 	        var cue = _step.value;
 	
 	        var cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-	        div.childNodes[1].innerHTML += '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + '">' + cueText + '</span>';
+	
+	        if (typeof cue.line !== 'number' || cue.line == 0) cuePosition = 'bottom:auto;height:auto;';else cuePosition = 'bottom:' + (cueHeight * cue.line - cueHeight) + 'px;';
+	
+	        div.childNodes[1].innerHTML += '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + cuePosition + '">' + cueText + '</span>';
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;

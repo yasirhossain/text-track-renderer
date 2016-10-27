@@ -1,7 +1,7 @@
 WEBVTT FILE
 
 1
-00:00:00.500 --> 00:00:02.000 align:middle line:6
+00:00:00.500 --> 00:00:02.000 align:middle line:8
 The Web is
 always changing
 
@@ -10,7 +10,7 @@ always changing
 and the way we access it is changing
 
 3
-00:00:01.000 --> 00:00:07.000 align:right
+00:00:05.000 --> 00:00:07.000 align:right
 The source of that change is <c.highlight>you</c>
 
 4

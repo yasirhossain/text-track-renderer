@@ -1,7 +1,7 @@
 const TextTrackRenderer = () => {
   let div,
       track,
-      cuesHeight, cuesFontSize
+      cueHeight, cueFontSize, cuePosition
 
   const attach = (element) => {
     if (element.tagName) {
@@ -30,19 +30,23 @@ const TextTrackRenderer = () => {
       div = element
       div.style.position = 'relative'
       div.innerHTML = cueStyleElem + cueContainer
-      cuesHeight = div.offsetHeight / 15
-      cuesFontSize = cuesHeight * .8
     }
-    else console.log(`${div} is not an HTML div container`)
+    else
+      console.log(`${div} is not an HTML div container`)
   }
 
   const setTextTrack = (obj) => {
-    if (div == null) console.log(`attach div container using .attach() first`)
-    if (obj == null) console.log(`please add track first`)
+    if (div == null)
+      console.log(`attach div container using .attach() first`)
+    if (obj == null)
+      console.log(`please add track first`)
     else {
-      if (isElement(obj)) loadTrack(obj.track)
-      else if (typeof obj == 'object') loadTrack(obj)
-      else console.log(`the ${typeof obj} ${obj} is not a valid track object`)
+      if (isElement(obj))
+        loadTrack(obj.track)
+      else if (typeof obj == 'object')
+        loadTrack(obj)
+      else
+        console.log(`the ${typeof obj} ${obj} is not a valid track object`)
     }
   }
 
@@ -52,19 +56,21 @@ const TextTrackRenderer = () => {
   }
 
   const renderCues = () => {
-    let cueHeight = cuesHeight,
-        cueDefStyles   = `height:${cueHeight}px;font-size:${cuesFontSize}px;`
+    let cueHeight = div.offsetHeight / 15,
+        cueFontSize = cueHeight * .8,
+        cuePosition = 'position:relative;bottom:auto;',
+        cueDefStyles = `height:${cueHeight}px;font-size:${cueFontSize}px;`
 
     div.childNodes[1].innerHTML = ''
     for (let cue of track.activeCues) {
       let cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />')
 
-      if (typeof cue.line == 'number') {
-        cueHeight = cuesHeight * cue.line
-      }
-      console.log(cue.line)
-      console.log(cueHeight)
-      div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cueText}</span>`
+      if (typeof cue.line !== 'number' || cue.line == 0)
+        cuePosition = 'bottom:auto;height:auto;'
+      else
+        cuePosition = `bottom:${(cueHeight * cue.line) - cueHeight}px;`
+
+      div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}${cuePosition}">${cueText}</span>`
     }
   }
 
