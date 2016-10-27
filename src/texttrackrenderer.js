@@ -31,6 +31,7 @@ const TextTrackRenderer = () => {
   const renderCues = () => {
     let cueContainer   = `<div class="ttrCues"></div>`,
         cueDefStyles   = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
+        // move style tag outside of renderCues event
         cueStyleElem   =
         `<style>
           .ttrCues {
