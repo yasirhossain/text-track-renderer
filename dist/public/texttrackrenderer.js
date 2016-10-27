@@ -88,7 +88,9 @@ var TextTrackRenderer =
 	  var renderCues = function renderCues() {
 	    var cueContainer = '<div class="ttrCues"></div>',
 	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
-	        cueStyleElem = '<style>\n          .ttrCues {\n            position:absolute;\n            left:0;bottom:0;\n            width:100%;\n          }\n          .ttrCues span {\n            text-align:center;\n            position:relative;\n            color:#fff;\n            background-color:#000;\n          }\n          .ttrCues span:after{display:block;content:"";background-color:transparent;}\n          .ttrCues span:last-child:after{content:initial;}\n          .ttrCues span.start{float:left;}\n          .ttrCues span.right{float:right;}\n        </style>';
+	
+	    // move style tag outside of renderCues event
+	    cueStyleElem = '<style>\n          .ttrCues {\n            position:absolute;\n            left:0;bottom:0;\n            width:100%;\n          }\n          .ttrCues span {\n            text-align:center;\n            position:relative;\n            color:#fff;\n            background-color:#000;\n          }\n          .ttrCues span:after{display:block;content:"";background-color:transparent;}\n          .ttrCues span:last-child:after{content:initial;}\n          .ttrCues span.start, .ttrCues span.left {float:left;}\n          .ttrCues span.right{float:right;}\n        </style>';
 	
 	    div.innerHTML = cueStyleElem + cueContainer;
 	    console.log(track.activeCues);
