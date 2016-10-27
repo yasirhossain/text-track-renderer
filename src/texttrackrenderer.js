@@ -1,7 +1,7 @@
 const TextTrackRenderer = () => {
   let div,
       track,
-      cueHeight, cueFontSize
+      cuesHeight, cuesFontSize
 
   const attach = (element) => {
     if (element.tagName) {
@@ -11,6 +11,7 @@ const TextTrackRenderer = () => {
           position:absolute;
           left:0;bottom:0;
           width:100%;
+          font-family: Helvetica, sans;
         }
         .ttrCues .ttrCue {
           text-align:center;
@@ -29,8 +30,8 @@ const TextTrackRenderer = () => {
       div = element
       div.style.position = 'relative'
       div.innerHTML = cueStyleElem + cueContainer
-      cueHeight = div.offsetHeight / 15
-      cueFontSize = cueHeight * .8
+      cuesHeight = div.offsetHeight / 15
+      cuesFontSize = cuesHeight * .8
     }
     else console.log(`${div} is not an HTML div container`)
   }
@@ -51,13 +52,18 @@ const TextTrackRenderer = () => {
   }
 
   const renderCues = () => {
-    let cueContainer   = `<div class="ttrCues"></div>`,
-        cueDefStyles   = `height:${cueHeight}px;font-size:${cueFontSize}px;`
+    let cueHeight = cuesHeight,
+        cueDefStyles   = `height:${cueHeight}px;font-size:${cuesFontSize}px;`
 
-    console.log(track.activeCues)
     div.childNodes[1].innerHTML = ''
     for (let cue of track.activeCues) {
       let cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />')
+
+      if (typeof cue.line == 'number') {
+        cueHeight = cuesHeight * cue.line
+      }
+      console.log(cue.line)
+      console.log(cueHeight)
       div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cueText}</span>`
     }
   }
