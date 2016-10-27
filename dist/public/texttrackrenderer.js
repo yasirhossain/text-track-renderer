@@ -86,9 +86,9 @@ var TextTrackRenderer =
 	  };
 	
 	  var renderCues = function renderCues() {
-	    var cueContainer = '<div class="ttrCues" style="position:absolute;left:0;bottom:0;width:100%;"></div>',
-	        cueStyle = 'height:' + cueHeight + 'px;width:100%;text-align:center;position:relative;font-size:' + cueFontSize + 'px;color:#fff;background-color:#000;padding:2px 5px;',
-	        cueStyleElem = '<style>.ttrCues span:after{display:block;content:"";background-color:transparent;} .ttrCues span:last-child:after{content:initial;}</style>';
+	    var cueContainer = '<div class="ttrCues"></div>',
+	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
+	        cueStyleElem = '<style>\n          .ttrCues {\n            position:absolute;\n            left:0;bottom:0;\n            width:100%;\n          }\n          .ttrCues span {\n            text-align:center;\n            position:relative;\n            color:#fff;\n            background-color:#000;\n          }\n          .ttrCues span:after{display:block;content:"";background-color:transparent;}\n          .ttrCues span:last-child:after{content:initial;}\n          .ttrCues span.start{float:left;}\n          .ttrCues span.right{float:right;}\n        </style>';
 	
 	    div.innerHTML = cueStyleElem + cueContainer;
 	    console.log(track.activeCues);
@@ -100,7 +100,7 @@ var TextTrackRenderer =
 	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	        var cue = _step.value;
 	
-	        div.childNodes[1].innerHTML += '<span style="' + cueStyle + '">' + cue.text + '</span>';
+	        div.childNodes[1].innerHTML += '<span class="' + cue.align + '" style="' + cueDefStyles + '">' + cue.text + '</span>';
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;
