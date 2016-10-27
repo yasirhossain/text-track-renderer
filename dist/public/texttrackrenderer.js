@@ -102,7 +102,8 @@ var TextTrackRenderer =
 	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	        var cue = _step.value;
 	
-	        div.childNodes[1].innerHTML += '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + '">' + cue.text + '</span>';
+	        var cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+	        div.childNodes[1].innerHTML += '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + '">' + cueText + '</span>';
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;

@@ -54,8 +54,10 @@ const TextTrackRenderer = () => {
 
     div.innerHTML = cueStyleElem + cueContainer
     console.log(track.activeCues)
-    for (let cue of track.activeCues)
-      div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cue.text}</span>`
+    for (let cue of track.activeCues) {
+      let cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />')
+      div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cueText}</span>`
+    }
   }
 
   const isElement = (obj) => {
