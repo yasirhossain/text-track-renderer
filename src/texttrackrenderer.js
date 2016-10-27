@@ -39,22 +39,23 @@ const TextTrackRenderer = () => {
             left:0;bottom:0;
             width:100%;
           }
-          .ttrCues span {
+          .ttrCues .ttrCue {
             text-align:center;
             position:relative;
             color:#fff;
             background-color:#000;
+            clear:both;
           }
-          .ttrCues span:after{display:block;content:"";background-color:transparent;}
-          .ttrCues span:last-child:after{content:initial;}
-          .ttrCues span.start, .ttrCues span.left {float:left;}
-          .ttrCues span.right{float:right;}
+          .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}
+          .ttrCues .ttrCue:last-child:after{content:initial;}
+          .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}
+          .ttrCues .ttrCue.right{float:right;}
         </style>`
 
     div.innerHTML = cueStyleElem + cueContainer
     console.log(track.activeCues)
     for (let cue of track.activeCues)
-      div.childNodes[1].innerHTML += `<span class="${cue.align}" style="${cueDefStyles}">${cue.text}</span>`
+      div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cue.text}</span>`
   }
 
   const isElement = (obj) => {
