@@ -5,8 +5,30 @@ const TextTrackRenderer = () => {
 
   const attach = (element) => {
     if (element.tagName) {
+      let cueStyleElem =
+      `<style>
+        .ttrCues {
+          position:absolute;
+          left:0;bottom:0;
+          width:100%;
+        }
+        .ttrCues .ttrCue {
+          text-align:center;
+          position:relative;
+          color:#fff;
+          background-color:#000;
+          clear:both;
+        }
+        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}
+        .ttrCues .ttrCue:last-child:after{content:initial;}
+        .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}
+        .ttrCues .ttrCue.right{float:right;}
+      </style>`,
+      cueContainer = `<div class="ttrCues"></div>`
+
       div = element
       div.style.position = 'relative'
+      div.innerHTML = cueStyleElem + cueContainer
       cueHeight = div.offsetHeight / 15
       cueFontSize = cueHeight * .8
     }
@@ -30,30 +52,10 @@ const TextTrackRenderer = () => {
 
   const renderCues = () => {
     let cueContainer   = `<div class="ttrCues"></div>`,
-        cueDefStyles   = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
-        // move style tag outside of renderCues event
-        cueStyleElem   =
-        `<style>
-          .ttrCues {
-            position:absolute;
-            left:0;bottom:0;
-            width:100%;
-          }
-          .ttrCues .ttrCue {
-            text-align:center;
-            position:relative;
-            color:#fff;
-            background-color:#000;
-            clear:both;
-          }
-          .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}
-          .ttrCues .ttrCue:last-child:after{content:initial;}
-          .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}
-          .ttrCues .ttrCue.right{float:right;}
-        </style>`
+        cueDefStyles   = `height:${cueHeight}px;font-size:${cueFontSize}px;`
 
-    div.innerHTML = cueStyleElem + cueContainer
     console.log(track.activeCues)
+    div.childNodes[1].innerHTML = ''
     for (let cue of track.activeCues) {
       let cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />')
       div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cueText}</span>`

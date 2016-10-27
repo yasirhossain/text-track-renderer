@@ -64,8 +64,12 @@ var TextTrackRenderer =
 	
 	  var attach = function attach(element) {
 	    if (element.tagName) {
+	      var cueStyleElem = '<style>\n        .ttrCues {\n          position:absolute;\n          left:0;bottom:0;\n          width:100%;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:relative;\n          color:#fff;\n          background-color:#000;\n          clear:both;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}\n        .ttrCues .ttrCue.right{float:right;}\n      </style>',
+	          cueContainer = '<div class="ttrCues"></div>';
+	
 	      div = element;
 	      div.style.position = 'relative';
+	      div.innerHTML = cueStyleElem + cueContainer;
 	      cueHeight = div.offsetHeight / 15;
 	      cueFontSize = cueHeight * .8;
 	    } else console.log(div + ' is not an HTML div container');
@@ -87,13 +91,10 @@ var TextTrackRenderer =
 	
 	  var renderCues = function renderCues() {
 	    var cueContainer = '<div class="ttrCues"></div>',
-	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
+	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;';
 	
-	    // move style tag outside of renderCues event
-	    cueStyleElem = '<style>\n          .ttrCues {\n            position:absolute;\n            left:0;bottom:0;\n            width:100%;\n          }\n          .ttrCues .ttrCue {\n            text-align:center;\n            position:relative;\n            color:#fff;\n            background-color:#000;\n            clear:both;\n          }\n          .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n          .ttrCues .ttrCue:last-child:after{content:initial;}\n          .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}\n          .ttrCues .ttrCue.right{float:right;}\n        </style>';
-	
-	    div.innerHTML = cueStyleElem + cueContainer;
 	    console.log(track.activeCues);
+	    div.childNodes[1].innerHTML = '';
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
 	    var _iteratorError = undefined;
