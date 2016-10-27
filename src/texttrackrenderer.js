@@ -47,7 +47,7 @@ const TextTrackRenderer = () => {
           }
           .ttrCues span:after{display:block;content:"";background-color:transparent;}
           .ttrCues span:last-child:after{content:initial;}
-          .ttrCues span.start{float:left;}
+          .ttrCues span.start, .ttrCues span.left {float:left;}
           .ttrCues span.right{float:right;}
         </style>`
 
