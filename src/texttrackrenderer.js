@@ -20,6 +20,7 @@ const TextTrackRenderer = () => {
         .ttrCues .ttrCue {
           text-align:center;
           position:absolute;
+          bottom:0;
           color:#fff;
           background-color:#000;
         }
@@ -62,16 +63,14 @@ const TextTrackRenderer = () => {
   const renderCues = () => {
     let cueHeight = div.offsetHeight / 15,
         cueFontSize = cueHeight * .8,
-        cuePosition = 'position:relative;bottom:auto;',
-        cueDefStyles = `height:${cueHeight}px;font-size:${cueFontSize}px;`
+        cueDefStyles = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
+        cuePosition
 
     div.childNodes[1].innerHTML = ''
     for (let cue of track.activeCues) {
       let cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />')
 
-      if (typeof cue.line !== 'number' || cue.line == 0)
-        cuePosition = 'bottom:0;top:auto;height:auto;'
-      else
+      if (typeof cue.line == 'number' && cue.line !== 0)
         if (cue.align == 'middle')
           cuePosition = `bottom:${(cueHeight * cue.line) - cueHeight}px;height:auto;`
         else

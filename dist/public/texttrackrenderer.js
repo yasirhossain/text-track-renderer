@@ -68,7 +68,7 @@ var TextTrackRenderer =
 	      div = element;
 	      div.style.position = 'relative';
 	
-	      var cueStyleElem = '<style>\n        .ttrCues {\n          height:' + div.offsetHeight + 'px;\n          width:' + div.offsetWidth + 'px;\n          display:table-cell;\n          vertical-align:bottom;\n          font-family: Helvetica, sans;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:absolute;\n          color:#fff;\n          background-color:#000;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}\n        .ttrCues .ttrCue.right{left:auto;right:0;}\n        .ttrCues .ttrCue.middle{position:relative;}\n      </style>',
+	      var cueStyleElem = '<style>\n        .ttrCues {\n          height:' + div.offsetHeight + 'px;\n          width:' + div.offsetWidth + 'px;\n          display:table-cell;\n          vertical-align:bottom;\n          font-family: Helvetica, sans;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:absolute;\n          bottom:0;\n          color:#fff;\n          background-color:#000;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}\n        .ttrCues .ttrCue.right{left:auto;right:0;}\n        .ttrCues .ttrCue.middle{position:relative;}\n      </style>',
 	          cueContainer = '<div class="ttrCues"></div>';
 	
 	      div.innerHTML = cueStyleElem + cueContainer;
@@ -95,8 +95,8 @@ var TextTrackRenderer =
 	  var renderCues = function renderCues() {
 	    var cueHeight = div.offsetHeight / 15,
 	        cueFontSize = cueHeight * .8,
-	        cuePosition = 'position:relative;bottom:auto;',
-	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;';
+	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
+	        cuePosition = void 0;
 	
 	    div.childNodes[1].innerHTML = '';
 	    var _iteratorNormalCompletion = true;
@@ -109,7 +109,7 @@ var TextTrackRenderer =
 	
 	        var cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	
-	        if (typeof cue.line !== 'number' || cue.line == 0) cuePosition = 'bottom:0;top:auto;height:auto;';else if (cue.align == 'middle') cuePosition = 'bottom:' + (cueHeight * cue.line - cueHeight) + 'px;height:auto;';else cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;bottom:auto;height:auto;';
+	        if (typeof cue.line == 'number' && cue.line !== 0) if (cue.align == 'middle') cuePosition = 'bottom:' + (cueHeight * cue.line - cueHeight) + 'px;height:auto;';else cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;bottom:auto;height:auto;';
 	
 	        console.log('' + cue.text);
 	        console.log('cue.line - ' + cue.line);
