@@ -90,7 +90,7 @@ var TextTrackRenderer =
 	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
 	
 	    // move style tag outside of renderCues event
-	    cueStyleElem = '<style>\n          .ttrCues {\n            position:absolute;\n            left:0;bottom:0;\n            width:100%;\n          }\n          .ttrCues span {\n            text-align:center;\n            position:relative;\n            color:#fff;\n            background-color:#000;\n          }\n          .ttrCues span:after{display:block;content:"";background-color:transparent;}\n          .ttrCues span:last-child:after{content:initial;}\n          .ttrCues span.start, .ttrCues span.left {float:left;}\n          .ttrCues span.right{float:right;}\n        </style>';
+	    cueStyleElem = '<style>\n          .ttrCues {\n            position:absolute;\n            left:0;bottom:0;\n            width:100%;\n          }\n          .ttrCues .ttrCue {\n            text-align:center;\n            position:relative;\n            color:#fff;\n            background-color:#000;\n            clear:both;\n          }\n          .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n          .ttrCues .ttrCue:last-child:after{content:initial;}\n          .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}\n          .ttrCues .ttrCue.right{float:right;}\n        </style>';
 	
 	    div.innerHTML = cueStyleElem + cueContainer;
 	    console.log(track.activeCues);
@@ -102,7 +102,7 @@ var TextTrackRenderer =
 	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	        var cue = _step.value;
 	
-	        div.childNodes[1].innerHTML += '<span class="' + cue.align + '" style="' + cueDefStyles + '">' + cue.text + '</span>';
+	        div.childNodes[1].innerHTML += '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + '">' + cue.text + '</span>';
 	      }
 	    } catch (err) {
 	      _didIteratorError = true;
