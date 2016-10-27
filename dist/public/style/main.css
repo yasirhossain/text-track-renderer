@@ -9,9 +9,13 @@ body {
   width: 100%;
   text-align: center;
 }
-#trackRenderer {
+video {
   width: 640px;
   height: 360px;
+}
+#trackRenderer {
+  width: 640px !important;
+  height: 360px !important;
   background-color: rgba(53, 50, 50, 0.87);
   margin: 0 auto;
 }

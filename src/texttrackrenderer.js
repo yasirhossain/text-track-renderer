@@ -5,30 +5,32 @@ const TextTrackRenderer = () => {
 
   const attach = (element) => {
     if (element.tagName) {
+      div = element
+      div.style.position = 'relative'
+
       let cueStyleElem =
       `<style>
         .ttrCues {
-          position:absolute;
-          left:0;bottom:0;
-          width:100%;
+          height:${div.offsetHeight}px;
+          width:${div.offsetWidth}px;
+          display:table-cell;
+          vertical-align:bottom;
           font-family: Helvetica, sans;
         }
         .ttrCues .ttrCue {
           text-align:center;
-          position:relative;
+          position:absolute;
           color:#fff;
           background-color:#000;
-          clear:both;
         }
         .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}
         .ttrCues .ttrCue:last-child:after{content:initial;}
-        .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}
-        .ttrCues .ttrCue.right{float:right;}
+        .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}
+        .ttrCues .ttrCue.right{left:auto;right:0;}
+        .ttrCues .ttrCue.middle{position:relative;}
       </style>`,
       cueContainer = `<div class="ttrCues"></div>`
 
-      div = element
-      div.style.position = 'relative'
       div.innerHTML = cueStyleElem + cueContainer
     }
     else
@@ -38,8 +40,10 @@ const TextTrackRenderer = () => {
   const setTextTrack = (obj) => {
     if (div == null)
       console.log(`attach div container using .attach() first`)
-    if (obj == null)
+    if (obj == null) {
+      div.innerHTML = ''
       console.log(`please add track first`)
+    }
     else {
       if (isElement(obj))
         loadTrack(obj.track)
@@ -66,9 +70,16 @@ const TextTrackRenderer = () => {
       let cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />')
 
       if (typeof cue.line !== 'number' || cue.line == 0)
-        cuePosition = 'bottom:auto;height:auto;'
+        cuePosition = 'bottom:0;top:auto;height:auto;'
       else
-        cuePosition = `bottom:${(cueHeight * cue.line) - cueHeight}px;`
+        if (cue.align == 'middle')
+          cuePosition = `bottom:${(cueHeight * cue.line) - cueHeight}px;height:auto;`
+        else
+          cuePosition = `top:${(cueHeight * cue.line) - cueHeight}px;bottom:auto;height:auto;`
+
+      console.log(`${cue.text}`)
+      console.log(`cue.line - ${cue.line}`)
+      console.log(`cue.align - ${cue.align}`)
 
       div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}${cuePosition}">${cueText}</span>`
     }

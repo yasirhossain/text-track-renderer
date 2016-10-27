@@ -26,6 +26,11 @@ let video = document.querySelector('video'),
     vt = document.querySelector('video').textTracks[0]
 
 // Instantiates TextTrackRenderer
+video.addEventListener('loadedmetadata', function(e){
+  d.style.height = video.videoHeight
+  d.style.width = video.videoWidth
+})
+
 const ttr = new TextTrackRenderer()
 ttr.attach(d)
 
@@ -54,7 +59,7 @@ const hlsLoader = () => {
       console.log(data)
       setTimeout(function() {
         ttr.setTextTrack(document.querySelector("video").textTracks[0]);
-      }, 5000)
+      }, 10000)
     })
   }
 }

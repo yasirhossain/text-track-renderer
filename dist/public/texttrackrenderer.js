@@ -65,18 +65,22 @@ var TextTrackRenderer =
 	
 	  var attach = function attach(element) {
 	    if (element.tagName) {
-	      var cueStyleElem = '<style>\n        .ttrCues {\n          position:absolute;\n          left:0;bottom:0;\n          width:100%;\n          font-family: Helvetica, sans;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:relative;\n          color:#fff;\n          background-color:#000;\n          clear:both;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {float:left;}\n        .ttrCues .ttrCue.right{float:right;}\n      </style>',
-	          cueContainer = '<div class="ttrCues"></div>';
-	
 	      div = element;
 	      div.style.position = 'relative';
+	
+	      var cueStyleElem = '<style>\n        .ttrCues {\n          height:' + div.offsetHeight + 'px;\n          width:' + div.offsetWidth + 'px;\n          display:table-cell;\n          vertical-align:bottom;\n          font-family: Helvetica, sans;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:absolute;\n          color:#fff;\n          background-color:#000;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}\n        .ttrCues .ttrCue.right{left:auto;right:0;}\n        .ttrCues .ttrCue.middle{position:relative;}\n      </style>',
+	          cueContainer = '<div class="ttrCues"></div>';
+	
 	      div.innerHTML = cueStyleElem + cueContainer;
 	    } else console.log(div + ' is not an HTML div container');
 	  };
 	
 	  var setTextTrack = function setTextTrack(obj) {
 	    if (div == null) console.log('attach div container using .attach() first');
-	    if (obj == null) console.log('please add track first');else {
+	    if (obj == null) {
+	      div.innerHTML = '';
+	      console.log('please add track first');
+	    } else {
 	      if (isElement(obj)) loadTrack(obj.track);else if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object') loadTrack(obj);else console.log('the ' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + ' ' + obj + ' is not a valid track object');
 	    }
 	  };
@@ -105,7 +109,11 @@ var TextTrackRenderer =
 	
 	        var cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	
-	        if (typeof cue.line !== 'number' || cue.line == 0) cuePosition = 'bottom:auto;height:auto;';else cuePosition = 'bottom:' + (cueHeight * cue.line - cueHeight) + 'px;';
+	        if (typeof cue.line !== 'number' || cue.line == 0) cuePosition = 'bottom:0;top:auto;height:auto;';else if (cue.align == 'middle') cuePosition = 'bottom:' + (cueHeight * cue.line - cueHeight) + 'px;height:auto;';else cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;bottom:auto;height:auto;';
+	
+	        console.log('' + cue.text);
+	        console.log('cue.line - ' + cue.line);
+	        console.log('cue.align - ' + cue.align);
 	
 	        div.childNodes[1].innerHTML += '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + cuePosition + '">' + cueText + '</span>';
 	      }

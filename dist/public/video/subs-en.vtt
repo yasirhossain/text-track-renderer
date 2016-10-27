@@ -6,7 +6,7 @@ The Web is
 always changing
 
 2
-00:00:01.000 --> 00:00:04.300 align:start
+00:00:01.000 --> 00:00:04.300 align:start line:1
 and the way we access it is changing
 
 3
@@ -14,11 +14,11 @@ and the way we access it is changing
 The source of that change is <c.highlight>you</c>
 
 4
-00:00:07.100 --> 00:00:11.000 align:right size:50% line:0 position:20%
+00:00:07.100 --> 00:00:11.000
 Developers all around the world who are using our tools to create great new things (and more copy to see new line)
 
 5
-00:00:11.200 --> 00:00:13.200 vertical:rl
+00:00:11.200 --> 00:00:13.200
 and with so many tools, the sky is the limit
 
 6

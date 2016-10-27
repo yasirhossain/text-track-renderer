@@ -10770,7 +10770,7 @@ var logger = {
     log: function log(severity, msg) {
         var minLevel = this.verboseFilter[severity];
         if (this.verboseLevel >= minLevel) {
-            console.log(this.time + ' [' + severity + '] ' + msg);
+            //console.log(this.time + ' [' + severity + '] ' + msg);
         }
     }
 };
