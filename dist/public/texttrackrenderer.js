@@ -58,21 +58,10 @@ var TextTrackRenderer =
 	
 	var TextTrackRenderer = function TextTrackRenderer() {
 	  var div = void 0,
-	      track = void 0,
-	      cueHeight = void 0,
-	      cueFontSize = void 0,
-	      cuePosition = void 0;
+	      track = void 0;
 	
 	  var attach = function attach(element) {
-	    if (element.tagName) {
-	      div = element;
-	      div.style.position = 'relative';
-	
-	      var cueStyleElem = '<style>\n        .ttrCues {\n          height:' + div.offsetHeight + 'px;\n          width:' + div.offsetWidth + 'px;\n          display:table-cell;\n          vertical-align:bottom;\n          font-family: Helvetica, sans;\n        }\n        .ttrCues .ttrCue {\n          text-align:center;\n          position:absolute;\n          bottom:0;\n          color:#fff;\n          background-color:#000;\n        }\n        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n        .ttrCues .ttrCue:last-child:after{content:initial;}\n        .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}\n        .ttrCues .ttrCue.right{left:auto;right:0;}\n        .ttrCues .ttrCue.middle{position:relative;}\n      </style>',
-	          cueContainer = '<div class="ttrCues"></div>';
-	
-	      div.innerHTML = cueStyleElem + cueContainer;
-	    } else console.log(div + ' is not an HTML div container');
+	    if (element.tagName) div = element;else console.log(div + ' is not an HTML div container');
 	  };
 	
 	  var setTextTrack = function setTextTrack(obj) {
@@ -87,6 +76,7 @@ var TextTrackRenderer =
 	
 	  var loadTrack = function loadTrack(obj) {
 	    track = obj;
+	    renderStyles();
 	    track.oncuechange = function () {
 	      return renderCues();
 	    };
@@ -111,10 +101,6 @@ var TextTrackRenderer =
 	
 	        if (typeof cue.line == 'number' && cue.line !== 0) if (cue.align == 'middle') cuePosition = 'bottom:' + (cueHeight * cue.line - cueHeight) + 'px;height:auto;';else cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;bottom:auto;height:auto;';
 	
-	        console.log('' + cue.text);
-	        console.log('cue.line - ' + cue.line);
-	        console.log('cue.align - ' + cue.align);
-	
 	        div.childNodes[1].innerHTML += '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + cuePosition + '">' + cueText + '</span>';
 	      }
 	    } catch (err) {
@@ -136,6 +122,14 @@ var TextTrackRenderer =
 	  var isElement = function isElement(obj) {
 	    return;
 	    (typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === 'object' ? obj instanceof HTMLElement : obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === 'string';
+	  };
+	
+	  var renderStyles = function renderStyles() {
+	    var cueStyleElem = '<style>\n      .ttrCues {\n        height:' + div.offsetHeight + 'px;\n        width:' + div.offsetWidth + 'px;\n        display:table-cell;\n        vertical-align:bottom;\n        font-family: Helvetica, sans;\n      }\n      .ttrCues .ttrCue {\n        text-align:center;\n        position:absolute;\n        bottom:0;\n        color:#fff;\n        background-color:#000;\n      }\n      .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n      .ttrCues .ttrCue:last-child:after{content:initial;}\n      .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}\n      .ttrCues .ttrCue.right{left:auto;right:0;}\n      .ttrCues .ttrCue.middle{position:relative;}\n    </style>',
+	        cueContainer = '<div class="ttrCues"></div>';
+	
+	    div.style.position = 'relative';
+	    div.innerHTML = cueStyleElem + cueContainer;
 	  };
 	
 	  return {
