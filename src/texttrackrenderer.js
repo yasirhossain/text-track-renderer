@@ -44,9 +44,9 @@ const TextTrackRenderer = () => {
 
       if (typeof cue.line == 'number' && cue.line !== 0)
         if (cue.align == 'middle')
-          cuePosition = `bottom:${(cueHeight * cue.line) - cueHeight}px;height:auto;`
+          cuePosition = `top:${(cueHeight * cue.line) - cueHeight}px;`
         else
-          cuePosition = `top:${(cueHeight * cue.line) - cueHeight}px;bottom:auto;height:auto;`
+          cuePosition = `top:${(cueHeight * cue.line) - cueHeight}px;`
 
       div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}${cuePosition}">${cueText}</span>`
     }
@@ -78,7 +78,7 @@ const TextTrackRenderer = () => {
       .ttrCues .ttrCue:last-child:after{content:initial;}
       .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}
       .ttrCues .ttrCue.right{left:auto;right:0;}
-      .ttrCues .ttrCue.middle{position:relative;}
+      .ttrCues .ttrCue.middle{left:50%;transform:translateX(-50%);}
     </style>`,
     cueContainer = `<div class="ttrCues"></div>`
 
