@@ -1,39 +1,10 @@
 const TextTrackRenderer = () => {
   let div,
-      track,
-      cueHeight, cueFontSize, cuePosition
+      track
 
   const attach = (element) => {
-    if (element.tagName) {
+    if (element.tagName)
       div = element
-      div.style.position = 'relative'
-
-      let cueStyleElem =
-      `<style>
-        .ttrCues {
-          height:${div.offsetHeight}px;
-          width:${div.offsetWidth}px;
-          display:table-cell;
-          vertical-align:bottom;
-          font-family: Helvetica, sans;
-        }
-        .ttrCues .ttrCue {
-          text-align:center;
-          position:absolute;
-          bottom:0;
-          color:#fff;
-          background-color:#000;
-        }
-        .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}
-        .ttrCues .ttrCue:last-child:after{content:initial;}
-        .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}
-        .ttrCues .ttrCue.right{left:auto;right:0;}
-        .ttrCues .ttrCue.middle{position:relative;}
-      </style>`,
-      cueContainer = `<div class="ttrCues"></div>`
-
-      div.innerHTML = cueStyleElem + cueContainer
-    }
     else
       console.log(`${div} is not an HTML div container`)
   }
@@ -57,6 +28,7 @@ const TextTrackRenderer = () => {
 
   const loadTrack = (obj) => {
     track = obj
+    renderStyles()
     track.oncuechange = () => renderCues()
   }
 
@@ -76,10 +48,6 @@ const TextTrackRenderer = () => {
         else
           cuePosition = `top:${(cueHeight * cue.line) - cueHeight}px;bottom:auto;height:auto;`
 
-      console.log(`${cue.text}`)
-      console.log(`cue.line - ${cue.line}`)
-      console.log(`cue.align - ${cue.align}`)
-
       div.childNodes[1].innerHTML += `<span class="ttrCue ${cue.align}" style="${cueDefStyles}${cuePosition}">${cueText}</span>`
     }
   }
@@ -87,6 +55,35 @@ const TextTrackRenderer = () => {
   const isElement = (obj) => {
     return
       typeof HTMLElement === 'object' ? obj instanceof HTMLElement : obj && typeof obj === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName==='string'
+  }
+
+  const renderStyles = () => {
+    let cueStyleElem =
+    `<style>
+      .ttrCues {
+        height:${div.offsetHeight}px;
+        width:${div.offsetWidth}px;
+        display:table-cell;
+        vertical-align:bottom;
+        font-family: Helvetica, sans;
+      }
+      .ttrCues .ttrCue {
+        text-align:center;
+        position:absolute;
+        bottom:0;
+        color:#fff;
+        background-color:#000;
+      }
+      .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}
+      .ttrCues .ttrCue:last-child:after{content:initial;}
+      .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;}
+      .ttrCues .ttrCue.right{left:auto;right:0;}
+      .ttrCues .ttrCue.middle{position:relative;}
+    </style>`,
+    cueContainer = `<div class="ttrCues"></div>`
+
+    div.style.position = 'relative'
+    div.innerHTML = cueStyleElem + cueContainer
   }
 
   return {
