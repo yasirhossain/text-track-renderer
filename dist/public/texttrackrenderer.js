@@ -65,9 +65,10 @@ var TextTrackRenderer =
 	  };
 	
 	  var setTextTrack = function setTextTrack(obj) {
+	    if (track) resetTrack();
 	    if (div == null) console.log('attach div container using .attach() first');
 	    if (obj == null) {
-	      div.innerHTML = '';
+	      resetTrack();
 	      console.log('please add track first');
 	    } else {
 	      if (isElement(obj)) loadTrack(obj.track);else if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object') loadTrack(obj);else console.log('the ' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + ' ' + obj + ' is not a valid track object');
@@ -77,7 +78,6 @@ var TextTrackRenderer =
 	  var loadTrack = function loadTrack(obj) {
 	    track = obj;
 	    renderStyles();
-	    track.removeEventListener('cuechange', renderCues);
 	    track.addEventListener('cuechange', renderCues, false);
 	    //track.oncuechange = () => renderCues()
 	  };
@@ -128,13 +128,18 @@ var TextTrackRenderer =
 	    }
 	  };
 	
+	  var resetTrack = function resetTrack() {
+	    div.innerHTML = '';
+	    track.removeEventListener('cuechange', renderCues);
+	  };
+	
 	  var isElement = function isElement(obj) {
 	    return;
 	    (typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === 'object' ? obj instanceof HTMLElement : obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === 'string';
 	  };
 	
 	  var renderStyles = function renderStyles() {
-	    var cueStyleElem = '<style>\n      .ttrCues {\n        width:100%;\n        height:100%;\n        position:absolute;\n        font-family: Helvetica, sans;\n      }\n      .ttrCues .ttrDefCont {\n        position:absolute;\n        bottom:0;\n        width:100%;\n      }\n      .ttrCues .ttrLineCont, .ttrCues .ttrCentered {\n        position:absolute;\n        height:100%;\n        width:100%;\n        top:0;\n      }\n\n      .ttrCues .ttrCue {\n        text-align:center;\n        position:absolute;\n        overflow:hidden;\n        color:#fff;\n        background-color:#000;\n      }\n      .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n      .ttrCues .ttrCue:last-child:after{content:initial;}\n      .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;text-align:left;}\n      .ttrCues .ttrCue.right{left:auto;right:0;text-align:right;}\n\n      .ttrCues .ttrDefCont .ttrCue,\n      .ttrCues .ttrCentered .ttrCue {position:relative;}\n\n      .ttrCues .ttrDefCont .ttrCue.start,\n      .ttrCues .ttrDefCont .ttrCue.left {float:left;}\n      .ttrCues .ttrDefCont .ttrCue.right {float:right;}\n    </style>',
+	    var cueStyleElem = '<style>\n      .ttrCues {\n        width:100%;\n        height:100%;\n        position:absolute;\n        overflow:hidden;\n        font-family: Helvetica, sans;\n      }\n      .ttrCues .ttrDefCont {\n        position:absolute;\n        bottom:0;\n        width:100%;\n      }\n      .ttrCues .ttrLineCont, .ttrCues .ttrCentered {\n        position:absolute;\n        height:100%;\n        width:100%;\n        top:0;\n      }\n\n      .ttrCues .ttrCue {\n        text-align:center;\n        position:absolute;\n        overflow:hidden;\n        color:#fff;\n        background-color:#000;\n      }\n      .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}\n      .ttrCues .ttrCue:last-child:after{content:initial;}\n      .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;text-align:left;}\n      .ttrCues .ttrCue.right{left:auto;right:0;text-align:right;}\n\n      .ttrCues .ttrDefCont .ttrCue,\n      .ttrCues .ttrCentered .ttrCue {position:relative;}\n\n      .ttrCues .ttrDefCont .ttrCue.start,\n      .ttrCues .ttrDefCont .ttrCue.left {float:left;}\n      .ttrCues .ttrDefCont .ttrCue.right {float:right;}\n    </style>',
 	        cueContainer = '<div class="ttrCues"></div>';
 	
 	    div.style.position = 'relative';

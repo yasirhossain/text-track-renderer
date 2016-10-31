@@ -10,10 +10,12 @@ const TextTrackRenderer = () => {
   }
 
   const setTextTrack = (obj) => {
+    if (track)
+      resetTrack()
     if (div == null)
       console.log(`attach div container using .attach() first`)
     if (obj == null) {
-      div.innerHTML = ''
+      resetTrack()
       console.log(`please add track first`)
     }
     else {
@@ -29,7 +31,6 @@ const TextTrackRenderer = () => {
   const loadTrack = (obj) => {
     track = obj
     renderStyles()
-    track.removeEventListener('cuechange', renderCues)
     track.addEventListener('cuechange', renderCues, false)
     //track.oncuechange = () => renderCues()
   }
@@ -64,6 +65,11 @@ const TextTrackRenderer = () => {
     }
   }
 
+  const resetTrack = () => {
+    div.innerHTML = ''
+    track.removeEventListener('cuechange', renderCues)
+  }
+
   const isElement = (obj) => {
     return
       typeof HTMLElement === 'object' ? obj instanceof HTMLElement : obj && typeof obj === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName==='string'
@@ -76,6 +82,7 @@ const TextTrackRenderer = () => {
         width:100%;
         height:100%;
         position:absolute;
+        overflow:hidden;
         font-family: Helvetica, sans;
       }
       .ttrCues .ttrDefCont {
