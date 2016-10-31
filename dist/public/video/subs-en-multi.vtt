@@ -1,31 +1,31 @@
 WEBVTT FILE
 
 1
-00:00:00.500 --> 00:00:02.000 align:middle line:1
+00:00:00.500 --> 00:00:02.000
 The Web is always changing
 
 2
-00:00:00.500 --> 00:00:02.000 align:middle line:2
+00:00:00.500 --> 00:00:02.000
 and the way we access it is changing
 
 3
-00:00:00.500 --> 00:00:02.000 align:middle line:3
+00:00:00.500 --> 00:00:02.000 line:3
 The source of that change is <c.highlight>you</c>
 
 4
-00:00:00.500 --> 00:00:02.000 align:middle line:4
+00:00:00.500 --> 00:00:02.000 align:start line:4
 Developers all around the world who are using our tools to create great new things (and more copy to see new line)
 
 5
-00:00:00.500 --> 00:00:02.000 align:middle line:5
+00:00:00.500 --> 00:00:02.000 align:right line:5
 and with so many tools, the sky is the limit
 
 6
-00:00:00.500 --> 00:00:02.000 align:middle line:6
+00:00:00.500 --> 00:00:02.000 align:left line:6
 But it cant happen without you and your ideas
 
 7
-00:00:00.500 --> 00:00:02.000 align:middle line:7
+00:00:00.500 --> 00:00:02.000 line:7
 We want to know you better
 
 8
