@@ -14,6 +14,7 @@ const TextTrackRenderer = () => {
       console.log(`attach div container using .attach() first`)
     if (obj == null) {
       div.innerHTML = ''
+      track.removeEventListener('cuechange', renderCues)
       console.log(`please add track first`)
     }
     else {
@@ -29,7 +30,8 @@ const TextTrackRenderer = () => {
   const loadTrack = (obj) => {
     track = obj
     renderStyles()
-    track.oncuechange = () => renderCues()
+    track.addEventListener('cuechange', renderCues, false)
+    //track.oncuechange = () => renderCues()
   }
 
   const renderCues = () => {

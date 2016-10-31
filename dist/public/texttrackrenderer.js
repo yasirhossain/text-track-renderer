@@ -68,6 +68,7 @@ var TextTrackRenderer =
 	    if (div == null) console.log('attach div container using .attach() first');
 	    if (obj == null) {
 	      div.innerHTML = '';
+	      track.removeEventListener('cuechange', renderCues);
 	      console.log('please add track first');
 	    } else {
 	      if (isElement(obj)) loadTrack(obj.track);else if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object') loadTrack(obj);else console.log('the ' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + ' ' + obj + ' is not a valid track object');
@@ -77,9 +78,8 @@ var TextTrackRenderer =
 	  var loadTrack = function loadTrack(obj) {
 	    track = obj;
 	    renderStyles();
-	    track.oncuechange = function () {
-	      return renderCues();
-	    };
+	    track.addEventListener('cuechange', renderCues, false);
+	    //track.oncuechange = () => renderCues()
 	  };
 	
 	  var renderCues = function renderCues() {
