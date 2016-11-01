@@ -14,8 +14,6 @@ video {
   height: 360px;
 }
 #trackRenderer {
-  width: 640px !important;
-  height: 360px !important;
   background-color: rgba(53, 50, 50, 0.87);
   margin: 0 auto;
 }
@@ -26,6 +24,7 @@ nav {
   background: red;
   padding: 1% 0;
   position: fixed;
+  z-index: 20;
   bottom: 0;
 }
 nav button {
@@ -34,4 +33,7 @@ nav button {
   border: 0 none;
   color: white;
   font-size: 16px;
+}
+#btn-normal {
+  display: none;
 }

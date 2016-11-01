@@ -87,6 +87,7 @@ const TextTrackRenderer = () => {
       }
       .ttrCues .ttrDefCont {
         position:absolute;
+        z-index:15;
         bottom:0;
         width:100%;
       }
@@ -96,7 +97,6 @@ const TextTrackRenderer = () => {
         width:100%;
         top:0;
       }
-
       .ttrCues .ttrCue {
         text-align:center;
         position:absolute;

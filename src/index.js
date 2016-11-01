@@ -64,8 +64,42 @@ const hlsLoader = () => {
   }
 }
 
+const incSize = () => {
+  video.style.height = video.offsetHeight + (20 * .5625)
+  video.style.width = video.offsetWidth + 20
+
+  d.style.height = video.offsetHeight + (20 * .5625)
+  d.style.width = video.offsetWidth + 20
+
+  document.getElementById('btn-normal').style.display = 'inline'
+}
+
+const decSize = () => {
+  video.style.height = video.offsetHeight - (20 * .5625)
+  video.style.width = video.offsetWidth - 20
+
+  d.style.height = video.offsetHeight - (20 * .5625)
+  d.style.width = video.offsetWidth - 20
+
+  document.getElementById('btn-normal').style.display = 'inline'
+}
+
+const normSize = () => {
+  video.style.height = 640 * .5625
+  video.style.width = 640
+
+  d.style.height = 640 * .5625
+  d.style.width = 640
+
+  document.getElementById('btn-normal').style.display = 'none'
+}
+
 document.getElementById('btn-default').addEventListener('click', defaultLoader)
 document.getElementById('btn-hls').addEventListener('click', hlsLoader)
+
+document.getElementById('btn-normal').addEventListener('click', normSize)
+document.getElementById('btn-larger').addEventListener('click', incSize)
+document.getElementById('btn-smaller').addEventListener('click', decSize)
 
 ttr.setTextTrack(vt)
 //ttr.setTextTrack(t)
