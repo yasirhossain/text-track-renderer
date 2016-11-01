@@ -9,7 +9,7 @@ body {
   width: 100%;
   text-align: center;
 }
-video {
+video, #trackRenderer {
   width: 640px;
   height: 360px;
 }
