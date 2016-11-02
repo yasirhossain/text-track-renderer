@@ -61,7 +61,9 @@ var TextTrackRenderer =
 	      track = void 0;
 	
 	  var attach = function attach(element) {
-	    if (element.tagName) div = element;else console.log(div + ' is not an HTML div container');
+	    if (element.tagName) {
+	      div = element;
+	    } else console.log(div + ' is not an HTML div container');
 	  };
 	
 	  var setTextTrack = function setTextTrack(obj) {
@@ -78,8 +80,7 @@ var TextTrackRenderer =
 	  var loadTrack = function loadTrack(obj) {
 	    track = obj;
 	    renderStyles();
-	    track.addEventListener('cuechange', renderCues, false);
-	    //track.oncuechange = () => renderCues()
+	    track.addEventListener('cuechange', renderCues);
 	  };
 	
 	  var renderCues = function renderCues() {

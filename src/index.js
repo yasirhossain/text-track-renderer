@@ -37,7 +37,6 @@ ttr.attach(d)
 const defaultLoader = () => {
     video.removeAttribute('src')
     video.load()
-    video.play()
     video.innerHTML = ''
     for (let source of videoSample.videos)
       video.innerHTML += `<source src="${source.src}" type="${source.type}"></source>`
@@ -46,6 +45,7 @@ const defaultLoader = () => {
     setTimeout(function() {
       ttr.setTextTrack(document.querySelector('video').textTracks[0])
     }, 1000)
+    video.play()
 }
 
 const hlsLoader = () => {
@@ -54,12 +54,12 @@ const hlsLoader = () => {
     video.innerHTML = ''
     hls.loadSource('http://cdn3.videos.bloomberg.com/btv/us/master.m3u8')
     hls.attachMedia(video)
-    hls.on(Hls.Events.MANIFEST_PARSED,function(event, data) {
+    hls.on(Hls.Events.FRAG_LOADED, function() {
+      console.log("video now plays!")
       video.play()
-      console.log(data)
       setTimeout(function() {
-        ttr.setTextTrack(document.querySelector("video").textTracks[0]);
-      }, 10000)
+        ttr.setTextTrack(document.querySelector("video").textTracks[0])
+      }, 500)
     })
   }
 }

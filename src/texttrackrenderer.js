@@ -3,8 +3,9 @@ const TextTrackRenderer = () => {
       track
 
   const attach = (element) => {
-    if (element.tagName)
+    if (element.tagName) {
       div = element
+    }
     else
       console.log(`${div} is not an HTML div container`)
   }
@@ -31,8 +32,7 @@ const TextTrackRenderer = () => {
   const loadTrack = (obj) => {
     track = obj
     renderStyles()
-    track.addEventListener('cuechange', renderCues, false)
-    //track.oncuechange = () => renderCues()
+    track.addEventListener('cuechange', renderCues)
   }
 
   const renderCues = () => {
