@@ -37,6 +37,7 @@ ttr.attach(d)
 const defaultLoader = () => {
     video.removeAttribute('src')
     video.load()
+    ttr.setTextTrack(null)
     video.innerHTML = ''
     for (let source of videoSample.videos)
       video.innerHTML += `<source src="${source.src}" type="${source.type}"></source>`
@@ -51,11 +52,11 @@ const defaultLoader = () => {
 const hlsLoader = () => {
   if(Hls.isSupported()) {
     let hls = new Hls()
+    ttr.setTextTrack(null)
     video.innerHTML = ''
     hls.loadSource('http://cdn3.videos.bloomberg.com/btv/us/master.m3u8')
     hls.attachMedia(video)
     hls.on(Hls.Events.FRAG_LOADED, function() {
-      console.log("video now plays!")
       video.play()
       setTimeout(function() {
         ttr.setTextTrack(document.querySelector("video").textTracks[0])
