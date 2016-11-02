@@ -4,6 +4,16 @@
     <link rel="stylesheet" href="style/main.css">
   </head>
   <body>
+    <nav class="nav">
+      <label class="logo">Text Track Renderer</label>
+      <ul>
+        <li><a id="btn-default">Default</a></li>
+        <li><a id="btn-hls">HLS</a></li>
+        <li><a id="btn-larger">Increase</a></li>
+        <li><a id="btn-smaller">Decrease</a></li>
+        <li><a id="btn-normal">Normal</a></li>
+      </ul>
+    </nav>
     <div class="container">
       <video controls controls crossorigin=anonymous>
         <source src="http://pmd205470tn.download.theplatform.com.edgesuite.net/Jeremy_LaCivita_(VMS)/654/339/developerStories-en.mp4" type='video/webm; codecs="vp8, vorbis"' />
@@ -12,14 +22,6 @@
       </video>
       <div id="trackRenderer"></div>
     </div>
-    <nav class="nav">
-      <button id="btn-default">Default</button>
-      <button id="btn-hls">HLS</button>
-
-      <button id="btn-larger">Increase</button>
-      <button id="btn-smaller">Decrease</button>
-      <button id="btn-normal">Normal</button>
-    </nav>
     <script type="text/javascript" src="hls.js"></script>
     <script type="text/javascript" src="texttrackrenderer.js"></script>
     <script type="text/javascript">

@@ -1,13 +1,15 @@
 body {
   padding: 0;
   margin: 0;
-  background: black;
-}
-.container {
+  background: #051a28;
+  font-family: 'Roboto', sans-serif;
   position: relative;
   height: 100%;
   width: 100%;
+}
+.container {
   text-align: center;
+  padding-top: 60px;
 }
 video, #trackRenderer {
   width: 640px;
@@ -18,21 +20,43 @@ video, #trackRenderer {
   margin: 0 auto;
 }
 nav {
-  width: 100%;
+  width: 96%;
   text-align: center;
   height: 20px;
-  background: red;
-  padding: 1% 0;
+  background: #f44d5e;
   position: fixed;
   z-index: 20;
-  bottom: 0;
+  top: 0;
+  padding: 15px 2%;
 }
-nav button {
+nav .logo {
+  float: left;
+  color: #051a28;
+  font-size: 20px;
+  font-weight: 900;
+}
+ul {
+  position:absolute;
+  width: 100%;
+  list-style: none;
+  padding: 2px 0 0 0;
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  left: 0;
+}
+ul li {
+  display: inline;
+}
+nav a {
   cursor: pointer;
-  background: black;
   border: 0 none;
   color: white;
   font-size: 16px;
+  padding: 0 1%;
+}
+nav a:hover {
+  opacity: .5;
 }
 #btn-normal {
   display: none;
