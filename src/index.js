@@ -85,6 +85,10 @@ const decSize = () => {
   document.getElementById('btn-normal').style.display = 'inline'
 }
 
+const resize = () => {
+  ttr.renderTextTrack()
+}
+
 const normSize = () => {
   video.style.height = 640 * .5625
   video.style.width = 640
@@ -101,6 +105,7 @@ document.getElementById('btn-hls').addEventListener('click', hlsLoader)
 document.getElementById('btn-normal').addEventListener('click', normSize)
 document.getElementById('btn-larger').addEventListener('click', incSize)
 document.getElementById('btn-smaller').addEventListener('click', decSize)
+document.getElementById('btn-resize').addEventListener('click', resize)
 
 ttr.setTextTrack(vt)
 //ttr.setTextTrack(t)

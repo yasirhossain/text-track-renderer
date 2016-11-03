@@ -80,10 +80,10 @@ var TextTrackRenderer =
 	  var loadTrack = function loadTrack(obj) {
 	    track = obj;
 	    renderStyles();
-	    track.addEventListener('cuechange', renderCues);
+	    track.addEventListener('cuechange', renderTextTrack);
 	  };
 	
-	  var renderCues = function renderCues() {
+	  var renderTextTrack = function renderTextTrack() {
 	    var cueHeight = div.offsetHeight / 15,
 	        cueFontSize = cueHeight * .8,
 	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
@@ -131,7 +131,7 @@ var TextTrackRenderer =
 	
 	  var resetTrack = function resetTrack() {
 	    div.innerHTML = '';
-	    track.removeEventListener('cuechange', renderCues);
+	    track.removeEventListener('cuechange', renderTextTrack);
 	  };
 	
 	  var isElement = function isElement(obj) {
@@ -149,7 +149,8 @@ var TextTrackRenderer =
 	
 	  return {
 	    attach: attach,
-	    setTextTrack: setTextTrack
+	    setTextTrack: setTextTrack,
+	    renderTextTrack: renderTextTrack
 	  };
 	};
 	

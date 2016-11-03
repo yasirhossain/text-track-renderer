@@ -32,10 +32,10 @@ const TextTrackRenderer = () => {
   const loadTrack = (obj) => {
     track = obj
     renderStyles()
-    track.addEventListener('cuechange', renderCues)
+    track.addEventListener('cuechange', renderTextTrack)
   }
 
-  const renderCues = () => {
+  const renderTextTrack = () => {
     let cueHeight = div.offsetHeight / 15,
         cueFontSize = cueHeight * .8,
         cueDefStyles = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
@@ -67,7 +67,7 @@ const TextTrackRenderer = () => {
 
   const resetTrack = () => {
     div.innerHTML = ''
-    track.removeEventListener('cuechange', renderCues)
+    track.removeEventListener('cuechange', renderTextTrack)
   }
 
   const isElement = (obj) => {
@@ -124,7 +124,8 @@ const TextTrackRenderer = () => {
 
   return {
     attach,
-    setTextTrack
+    setTextTrack,
+    renderTextTrack
   }
 }
 
