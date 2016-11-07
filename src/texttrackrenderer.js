@@ -70,6 +70,10 @@ const TextTrackRenderer = () => {
     track.removeEventListener('cuechange', renderTextTrack)
   }
 
+  const layout = () => {
+    renderTextTrack()
+  }
+
   const isElement = (obj) => {
     return
       typeof HTMLElement === 'object' ? obj instanceof HTMLElement : obj && typeof obj === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName==='string'
@@ -124,8 +128,8 @@ const TextTrackRenderer = () => {
 
   return {
     attach,
-    setTextTrack,
-    renderTextTrack
+    layout,
+    setTextTrack
   }
 }
 

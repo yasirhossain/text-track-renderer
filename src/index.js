@@ -86,7 +86,7 @@ const decSize = () => {
 }
 
 const resize = () => {
-  ttr.renderTextTrack()
+  ttr.layout()
 }
 
 const normSize = () => {
