@@ -35,12 +35,17 @@ const TextTrackRenderer = () => {
     track.addEventListener('cuechange', renderTextTrack)
   }
 
-  const renderTextTrack = () => {
+  const renderTextTrack = (event, height, fontSize) => {
     let cueHeight = div.offsetHeight / 15,
         cueFontSize = cueHeight * .8,
         cueDefStyles = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
         cuePosition,
         cueParentCont = div.childNodes[1]
+
+    if (height !== undefined && fontSize !== undefined) {
+      cueHeight = height
+      cueFontSize = fontSize
+    }
 
     cueParentCont.innerHTML = ''
     cueParentCont.innerHTML = `<div class="ttrLineCont"></div><div class="ttrDefCont"></div>`
@@ -75,16 +80,17 @@ const TextTrackRenderer = () => {
   }
 
   const setScale = (num) => {
-    let cueHeight = div.offsetHeight / 15,
-        cueFontSize = cueHeight * .8
+    let cueHeight = (div.offsetHeight / 15).toFixed(2),
+        cueFontSize = (cueHeight * .8).toFixed(2)
 
     if (num > 0) {
       if (num > 2)
         num = 2
       console.log(`${cueHeight} row height`)
       console.log(`${cueFontSize} font size`)
-      cueHeight = (cueFontSize * num) + (cueHeight * .2)
-      cueFontSize = cueHeight * .8
+      cueHeight = ((cueFontSize * num) + (cueHeight * .2)).toFixed(2)
+      cueFontSize = (cueHeight * .8).toFixed(2)
+      renderTextTrack(cueHeight, cueFontSize)
       console.log(`${cueHeight} row height`)
       console.log(`${cueFontSize} font size`)
     } else

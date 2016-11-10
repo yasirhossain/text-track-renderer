@@ -83,12 +83,17 @@ var TextTrackRenderer =
 	    track.addEventListener('cuechange', renderTextTrack);
 	  };
 	
-	  var renderTextTrack = function renderTextTrack() {
+	  var renderTextTrack = function renderTextTrack(event, height, fontSize) {
 	    var cueHeight = div.offsetHeight / 15,
 	        cueFontSize = cueHeight * .8,
 	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
 	        cuePosition = void 0,
 	        cueParentCont = div.childNodes[1];
+	
+	    if (height !== undefined && fontSize !== undefined) {
+	      cueHeight = height;
+	      cueFontSize = fontSize;
+	    }
 	
 	    cueParentCont.innerHTML = '';
 	    cueParentCont.innerHTML = '<div class="ttrLineCont"></div><div class="ttrDefCont"></div>';
@@ -138,6 +143,22 @@ var TextTrackRenderer =
 	    renderTextTrack();
 	  };
 	
+	  var setScale = function setScale(num) {
+	    var cueHeight = (div.offsetHeight / 15).toFixed(2),
+	        cueFontSize = (cueHeight * .8).toFixed(2);
+	
+	    if (num > 0) {
+	      if (num > 2) num = 2;
+	      console.log(cueHeight + ' row height');
+	      console.log(cueFontSize + ' font size');
+	      cueHeight = (cueFontSize * num + cueHeight * .2).toFixed(2);
+	      cueFontSize = (cueHeight * .8).toFixed(2);
+	      renderTextTrack(cueHeight, cueFontSize);
+	      console.log(cueHeight + ' row height');
+	      console.log(cueFontSize + ' font size');
+	    } else console.log('scale of ' + int + ' needs to be larger than 0');
+	  };
+	
 	  var isElement = function isElement(obj) {
 	    return;
 	    (typeof HTMLElement === 'undefined' ? 'undefined' : _typeof(HTMLElement)) === 'object' ? obj instanceof HTMLElement : obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === 'string';
@@ -154,6 +175,7 @@ var TextTrackRenderer =
 	  return {
 	    attach: attach,
 	    layout: layout,
+	    setScale: setScale,
 	    setTextTrack: setTextTrack
 	  };
 	};

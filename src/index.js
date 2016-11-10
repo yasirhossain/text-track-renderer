@@ -65,6 +65,9 @@ const hlsLoader = () => {
   }
 }
 
+document.getElementById('btn-default').addEventListener('click', defaultLoader)
+document.getElementById('btn-hls').addEventListener('click', hlsLoader)
+
 // Div
 const incSizeDiv = () => {
   video.style.height = video.offsetHeight + (20 * .5625)
@@ -96,6 +99,11 @@ const normSizeDiv = () => {
   document.getElementById('btn-normal').style.display = 'none'
 }
 
+document.getElementById('btn-normal-div').addEventListener('click', normSizeDiv)
+document.getElementById('btn-larger-div').addEventListener('click', incSizeDiv)
+document.getElementById('btn-smaller-div').addEventListener('click', decSizeDiv)
+document.getElementById('btn-resize').addEventListener('click', resize)
+
 // Font
 const incSizeFont = () => {
   ttr.setScale(2)
@@ -118,14 +126,6 @@ const normSizeFont = () => {
 const resize = () => {
   ttr.layout()
 }
-
-document.getElementById('btn-default').addEventListener('click', defaultLoader)
-document.getElementById('btn-hls').addEventListener('click', hlsLoader)
-
-document.getElementById('btn-normal-div').addEventListener('click', normSizeDiv)
-document.getElementById('btn-larger-div').addEventListener('click', incSizeDiv)
-document.getElementById('btn-smaller-div').addEventListener('click', decSizeDiv)
-document.getElementById('btn-resize').addEventListener('click', resize)
 
 document.getElementById('btn-normal-font').addEventListener('click', normSizeFont)
 document.getElementById('btn-larger-font').addEventListener('click', incSizeFont)
