@@ -99,6 +99,10 @@ const normSizeDiv = () => {
   document.getElementById('btn-normal').style.display = 'none'
 }
 
+const resize = () => {
+  ttr.layout()
+}
+
 document.getElementById('btn-normal-div').addEventListener('click', normSizeDiv)
 document.getElementById('btn-larger-div').addEventListener('click', incSizeDiv)
 document.getElementById('btn-smaller-div').addEventListener('click', decSizeDiv)
@@ -121,10 +125,6 @@ const normSizeFont = () => {
   ttr.setScale(1)
   console.log('reset font')
   document.getElementById('btn-normal-font').style.display = 'none'
-}
-
-const resize = () => {
-  ttr.layout()
 }
 
 document.getElementById('btn-normal-font').addEventListener('click', normSizeFont)
