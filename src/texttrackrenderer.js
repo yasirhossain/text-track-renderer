@@ -80,16 +80,11 @@ const TextTrackRenderer = () => {
   }
 
   const setScale = (num) => {
-    let cueHeight = (div.offsetHeight / 15).toFixed(2),
-        cueFontSize = (cueHeight * .8).toFixed(2)
-
     if (num > 0) {
       if (num > 2)
         num = 2
-      console.log(`${cueHeight} row height`)
-      console.log(`${cueFontSize} font size`)
-      cueHeight = ((cueFontSize * num) + (cueHeight * .2)).toFixed(2)
-      cueFontSize = (cueHeight * .8).toFixed(2)
+      let cueHeight = ((div.offsetHeight / 15).toFixed(2)) * num,
+          cueFontSize = cueHeight * .8
       renderTextTrack(cueHeight, cueFontSize)
       console.log(`${cueHeight} row height`)
       console.log(`${cueFontSize} font size`)
