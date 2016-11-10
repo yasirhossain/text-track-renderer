@@ -74,6 +74,23 @@ const TextTrackRenderer = () => {
     renderTextTrack()
   }
 
+  const setScale = (num) => {
+    let cueHeight = div.offsetHeight / 15,
+        cueFontSize = cueHeight * .8
+
+    if (num > 0) {
+      if (num > 2)
+        num = 2
+      console.log(`${cueHeight} row height`)
+      console.log(`${cueFontSize} font size`)
+      cueHeight = (cueFontSize * num) + (cueHeight * .2)
+      cueFontSize = cueHeight * .8
+      console.log(`${cueHeight} row height`)
+      console.log(`${cueFontSize} font size`)
+    } else
+      console.log(`scale of ${int} needs to be larger than 0`)
+  }
+
   const isElement = (obj) => {
     return
       typeof HTMLElement === 'object' ? obj instanceof HTMLElement : obj && typeof obj === 'object' && obj !== null && obj.nodeType === 1 && typeof obj.nodeName==='string'
@@ -129,6 +146,7 @@ const TextTrackRenderer = () => {
   return {
     attach,
     layout,
+    setScale,
     setTextTrack
   }
 }

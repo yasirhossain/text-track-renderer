@@ -58,6 +58,6 @@ nav a {
 nav a:hover {
   opacity: .5;
 }
-#btn-normal {
+#btn-normal-div, #btn-normal-font {
   display: none;
 }

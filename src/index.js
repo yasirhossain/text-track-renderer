@@ -65,7 +65,8 @@ const hlsLoader = () => {
   }
 }
 
-const incSize = () => {
+// Div
+const incSizeDiv = () => {
   video.style.height = video.offsetHeight + (20 * .5625)
   video.style.width = video.offsetWidth + 20
 
@@ -75,7 +76,7 @@ const incSize = () => {
   document.getElementById('btn-normal').style.display = 'inline'
 }
 
-const decSize = () => {
+const decSizeDiv = () => {
   video.style.height = video.offsetHeight - (20 * .5625)
   video.style.width = video.offsetWidth - 20
 
@@ -85,11 +86,7 @@ const decSize = () => {
   document.getElementById('btn-normal').style.display = 'inline'
 }
 
-const resize = () => {
-  ttr.layout()
-}
-
-const normSize = () => {
+const normSizeDiv = () => {
   video.style.height = 640 * .5625
   video.style.width = 640
 
@@ -99,13 +96,40 @@ const normSize = () => {
   document.getElementById('btn-normal').style.display = 'none'
 }
 
+// Font
+const incSizeFont = () => {
+  ttr.setScale(2)
+  console.log('increase font')
+  document.getElementById('btn-normal-font').style.display = 'inline'
+}
+
+const decSizeFont = () => {
+  ttr.setScale(0.1)
+  console.log('decrease font')
+  document.getElementById('btn-normal-font').style.display = 'inline'
+}
+
+const normSizeFont = () => {
+  ttr.setScale(1)
+  console.log('reset font')
+  document.getElementById('btn-normal-font').style.display = 'none'
+}
+
+const resize = () => {
+  ttr.layout()
+}
+
 document.getElementById('btn-default').addEventListener('click', defaultLoader)
 document.getElementById('btn-hls').addEventListener('click', hlsLoader)
 
-document.getElementById('btn-normal').addEventListener('click', normSize)
-document.getElementById('btn-larger').addEventListener('click', incSize)
-document.getElementById('btn-smaller').addEventListener('click', decSize)
+document.getElementById('btn-normal-div').addEventListener('click', normSizeDiv)
+document.getElementById('btn-larger-div').addEventListener('click', incSizeDiv)
+document.getElementById('btn-smaller-div').addEventListener('click', decSizeDiv)
 document.getElementById('btn-resize').addEventListener('click', resize)
+
+document.getElementById('btn-normal-font').addEventListener('click', normSizeFont)
+document.getElementById('btn-larger-font').addEventListener('click', incSizeFont)
+document.getElementById('btn-smaller-font').addEventListener('click', decSizeFont)
 
 ttr.setTextTrack(vt)
 //ttr.setTextTrack(t)
