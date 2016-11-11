@@ -35,17 +35,18 @@ const TextTrackRenderer = () => {
     track.addEventListener('cuechange', renderTextTrack)
   }
 
-  const renderTextTrack = (event, height, fontSize) => {
+  const renderTextTrack = (height, fontSize) => {
     let cueHeight = div.offsetHeight / 15,
-        cueFontSize = cueHeight * .8,
-        cueDefStyles = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
-        cuePosition,
-        cueParentCont = div.childNodes[1]
+        cueFontSize = cueHeight * .8
 
-    if (height !== undefined && fontSize !== undefined) {
+    if (typeof height == 'number' && typeof fontSize == 'number') {
       cueHeight = height
       cueFontSize = fontSize
     }
+
+    let cueDefStyles = `height:${cueHeight}px;font-size:${cueFontSize}px;`,
+        cuePosition,
+        cueParentCont = div.childNodes[1]
 
     cueParentCont.innerHTML = ''
     cueParentCont.innerHTML = `<div class="ttrLineCont"></div><div class="ttrDefCont"></div>`

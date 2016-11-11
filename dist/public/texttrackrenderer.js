@@ -83,17 +83,18 @@ var TextTrackRenderer =
 	    track.addEventListener('cuechange', renderTextTrack);
 	  };
 	
-	  var renderTextTrack = function renderTextTrack(event, height, fontSize) {
+	  var renderTextTrack = function renderTextTrack(height, fontSize) {
 	    var cueHeight = div.offsetHeight / 15,
-	        cueFontSize = cueHeight * .8,
-	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
-	        cuePosition = void 0,
-	        cueParentCont = div.childNodes[1];
+	        cueFontSize = cueHeight * .8;
 	
-	    if (height !== undefined && fontSize !== undefined) {
+	    if (typeof height == 'number' && typeof fontSize == 'number') {
 	      cueHeight = height;
 	      cueFontSize = fontSize;
 	    }
+	
+	    var cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
+	        cuePosition = void 0,
+	        cueParentCont = div.childNodes[1];
 	
 	    cueParentCont.innerHTML = '';
 	    cueParentCont.innerHTML = '<div class="ttrLineCont"></div><div class="ttrDefCont"></div>';
