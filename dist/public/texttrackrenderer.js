@@ -58,7 +58,8 @@ var TextTrackRenderer =
 	
 	var TextTrackRenderer = function TextTrackRenderer() {
 	  var div = void 0,
-	      track = void 0;
+	      track = void 0,
+	      scale = 1;
 	
 	  var attach = function attach(element) {
 	    if (element.tagName) {
@@ -83,16 +84,10 @@ var TextTrackRenderer =
 	    track.addEventListener('cuechange', renderTextTrack);
 	  };
 	
-	  var renderTextTrack = function renderTextTrack(height, fontSize) {
-	    var cueHeight = div.offsetHeight / 15,
-	        cueFontSize = cueHeight * .8;
-	
-	    if (typeof height == 'number' && typeof fontSize == 'number') {
-	      cueHeight = height;
-	      cueFontSize = fontSize;
-	    }
-	
-	    var cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
+	  var renderTextTrack = function renderTextTrack() {
+	    var cueHeight = div.offsetHeight / 15 * scale,
+	        cueFontSize = cueHeight * .8,
+	        cueDefStyles = 'height:' + cueHeight + 'px;font-size:' + cueFontSize + 'px;',
 	        cuePosition = void 0,
 	        cueParentCont = div.childNodes[1];
 	
@@ -147,11 +142,8 @@ var TextTrackRenderer =
 	  var setScale = function setScale(num) {
 	    if (num > 0) {
 	      if (num > 2) num = 2;
-	      var cueHeight = (div.offsetHeight / 15).toFixed(2) * num,
-	          cueFontSize = cueHeight * .8;
-	      renderTextTrack(cueHeight, cueFontSize);
-	      console.log(cueHeight + ' row height');
-	      console.log(cueFontSize + ' font size');
+	      scale = num;
+	      renderTextTrack();
 	    } else console.log('scale of ' + int + ' needs to be larger than 0');
 	  };
 	
