@@ -56,7 +56,6 @@ const hlsLoader = () => {
     hls.loadSource('http://cdn3.videos.bloomberg.com/btv/us/master.m3u8')
     hls.attachMedia(video)
     hls.on(Hls.Events.FRAG_LOADED, function() {
-      video.play()
       setTimeout(function() {
         ttr.setTextTrack(document.querySelector("video").textTracks[0])
       }, 500)
