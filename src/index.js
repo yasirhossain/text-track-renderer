@@ -46,7 +46,6 @@ const defaultLoader = () => {
     setTimeout(function() {
       ttr.setTextTrack(document.querySelector('video').textTracks[0])
     }, 1000)
-    video.play()
 }
 
 const hlsLoader = () => {
