@@ -43,16 +43,15 @@ const TextTrackRenderer = () => {
         cuePosition,
         cueParentCont = div.childNodes[1]
 
-
-
     cueParentCont.innerHTML = ''
     cueParentCont.innerHTML = `<div class="ttrLineCont"></div><div class="ttrDefCont"></div>`
 
     let cueDefCont = cueParentCont.childNodes[0],
         cueLineCont = cueParentCont.childNodes[1]
 
-    for (let cue of track.activeCues) {
-      let cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
+    for (let i=0;i<track.activeCues.length;i++) {
+      let cue = track.activeCues[i],
+          cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
           cueSpan = `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cueText}</span>`
 
       if (typeof cue.line == 'number') {

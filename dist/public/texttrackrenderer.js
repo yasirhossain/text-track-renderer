@@ -97,36 +97,16 @@ var TextTrackRenderer =
 	    var cueDefCont = cueParentCont.childNodes[0],
 	        cueLineCont = cueParentCont.childNodes[1];
 	
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
+	    for (var i = 0; i < track.activeCues.length; i++) {
+	      var cue = track.activeCues[i],
+	          cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
+	          cueSpan = '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + '">' + cueText + '</span>';
 	
-	    try {
-	      for (var _iterator = track.activeCues[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	        var cue = _step.value;
-	
-	        var cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
-	            cueSpan = '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + '">' + cueText + '</span>';
-	
-	        if (typeof cue.line == 'number') {
-	          var _cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;',
-	              _cueSpan = '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + _cuePosition + '">' + cueText + '</span>';
-	          if (cue.align == 'middle') cueParentCont.innerHTML += '<div class="ttrCentered">' + _cueSpan + '</div>';else cueParentCont.childNodes[0].innerHTML += _cueSpan;
-	        } else cueParentCont.childNodes[1].innerHTML += cueSpan;
-	      }
-	    } catch (err) {
-	      _didIteratorError = true;
-	      _iteratorError = err;
-	    } finally {
-	      try {
-	        if (!_iteratorNormalCompletion && _iterator.return) {
-	          _iterator.return();
-	        }
-	      } finally {
-	        if (_didIteratorError) {
-	          throw _iteratorError;
-	        }
-	      }
+	      if (typeof cue.line == 'number') {
+	        var _cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;',
+	            _cueSpan = '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + _cuePosition + '">' + cueText + '</span>';
+	        if (cue.align == 'middle') cueParentCont.innerHTML += '<div class="ttrCentered">' + _cueSpan + '</div>';else cueParentCont.childNodes[0].innerHTML += _cueSpan;
+	      } else cueParentCont.childNodes[1].innerHTML += cueSpan;
 	    }
 	  };
 	
