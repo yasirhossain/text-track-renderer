@@ -102,11 +102,11 @@ var TextTrackRenderer =
 	          cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
 	          cueSpan = '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + '">' + cueText + '</span>';
 	
-	      if (typeof cue.line == 'number') {
+	      if (typeof cue.line !== 'number' || cue.line == -1) cueParentCont.childNodes[1].innerHTML += cueSpan;else {
 	        var _cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;',
 	            _cueSpan = '<span class="ttrCue ' + cue.align + '" style="' + cueDefStyles + _cuePosition + '">' + cueText + '</span>';
 	        if (cue.align == 'middle') cueParentCont.innerHTML += '<div class="ttrCentered">' + _cueSpan + '</div>';else cueParentCont.childNodes[0].innerHTML += _cueSpan;
-	      } else cueParentCont.childNodes[1].innerHTML += cueSpan;
+	      }
 	    }
 	  };
 	

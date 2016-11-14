@@ -54,7 +54,9 @@ const TextTrackRenderer = () => {
           cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
           cueSpan = `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cueText}</span>`
 
-      if (typeof cue.line == 'number') {
+      if (typeof cue.line !== 'number' || cue.line == -1)
+        cueParentCont.childNodes[1].innerHTML += cueSpan
+      else {
         let cuePosition = `top:${(cueHeight * cue.line) - cueHeight}px;`,
             cueSpan = `<span class="ttrCue ${cue.align}" style="${cueDefStyles}${cuePosition}">${cueText}</span>`
         if (cue.align == 'middle')
@@ -62,8 +64,6 @@ const TextTrackRenderer = () => {
         else
           cueParentCont.childNodes[0].innerHTML += cueSpan
       }
-      else
-        cueParentCont.childNodes[1].innerHTML += cueSpan
     }
   }
 
