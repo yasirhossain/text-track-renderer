@@ -50,15 +50,20 @@ const defaultLoader = () => {
 
 const hlsLoader = () => {
   if(Hls.isSupported()) {
-    let hls = new Hls()
+    let hls = new Hls(),
+        fragLoaded = false
+
     ttr.setTextTrack(null)
     video.innerHTML = ''
     hls.loadSource('http://cdn3.videos.bloomberg.com/btv/us/master.m3u8')
     hls.attachMedia(video)
     hls.on(Hls.Events.FRAG_LOADED, function() {
-      setTimeout(function() {
-        ttr.setTextTrack(document.querySelector("video").textTracks[0])
-      }, 500)
+      if (!fragLoaded) {
+        setTimeout(function() {
+          ttr.setTextTrack(document.querySelector("video").textTracks[0])
+          fragLoaded = true
+        }, 500)
+      }
     })
   }
 }
