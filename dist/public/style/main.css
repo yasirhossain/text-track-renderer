@@ -61,3 +61,13 @@ nav a:hover {
 #btn-normal-div, #btn-normal-font {
   display: none;
 }
+
+/* Text Track Module Styles */
+.ttrCues {
+  color:#fff;
+  font-family: Helvetica, sans;
+}
+.ttrCue {
+  background-color:#000;
+}
+.ttrCues .ttrCue:after{background-color:transparent;}

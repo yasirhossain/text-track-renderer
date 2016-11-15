@@ -99,7 +99,6 @@ const TextTrackRenderer = () => {
         height:100%;
         position:absolute;
         overflow:hidden;
-        font-family: Helvetica, sans;
       }
       .ttrCues .ttrDefCont {
         position:absolute;
@@ -117,10 +116,7 @@ const TextTrackRenderer = () => {
         text-align:center;
         position:absolute;
         overflow:hidden;
-        color:#fff;
-        background-color:#000;
       }
-      .ttrCues .ttrCue:after{display:block;content:"";background-color:transparent;}
       .ttrCues .ttrCue:last-child:after{content:initial;}
       .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;text-align:left;}
       .ttrCues .ttrCue.right{left:auto;right:0;text-align:right;}
