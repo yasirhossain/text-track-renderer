@@ -111,6 +111,7 @@ const TextTrackRenderer = () => {
         height:100%;
         width:100%;
         top:0;
+        white-space: nowrap;
       }
       .ttrCues .ttrCue {
         text-align:center;
