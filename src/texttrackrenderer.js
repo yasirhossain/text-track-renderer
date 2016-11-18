@@ -52,13 +52,13 @@ const TextTrackRenderer = () => {
     for (let i=0;i<track.activeCues.length;i++) {
       let cue = track.activeCues[i],
           cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
-          cueSpan = `<span class="ttrCue ${cue.align}" style="${cueDefStyles}">${cueText}</span>`
+          cueSpan = `<span class="ttrCue ttr-${cue.align}" style="${cueDefStyles}">${cueText}</span>`
 
       if (typeof cue.line !== 'number' || cue.line == -1)
         cueParentCont.childNodes[1].innerHTML += cueSpan
       else {
         let cuePosition = `top:${(cueHeight * cue.line) - cueHeight}px;`,
-            cueSpan = `<span class="ttrCue ${cue.align}" style="${cueDefStyles}${cuePosition}">${cueText}</span>`
+            cueSpan = `<span class="ttrCue ttr-${cue.align}" style="${cueDefStyles}${cuePosition}">${cueText}</span>`
         if (cue.align == 'middle')
           cueParentCont.innerHTML += `<div class="ttrCentered">${cueSpan}</div>`
         else
@@ -119,15 +119,15 @@ const TextTrackRenderer = () => {
         overflow:hidden;
       }
       .ttrCues .ttrCue:last-child:after{content:initial;}
-      .ttrCues .ttrCue.start, .ttrCues span.left {left:0;right:auto;text-align:left;}
-      .ttrCues .ttrCue.right{left:auto;right:0;text-align:right;}
+      .ttrCues .ttrCue.ttr-start, .ttrCues span.ttr-left {left:0;right:auto;text-align:left;}
+      .ttrCues .ttrCue.ttr-right{left:auto;right:0;text-align:right;}
 
       .ttrCues .ttrDefCont .ttrCue,
       .ttrCues .ttrCentered .ttrCue {position:relative;}
 
-      .ttrCues .ttrDefCont .ttrCue.start,
-      .ttrCues .ttrDefCont .ttrCue.left {float:left;}
-      .ttrCues .ttrDefCont .ttrCue.right {float:right;}
+      .ttrCues .ttrDefCont .ttrCue.ttr-start,
+      .ttrCues .ttrDefCont .ttrCue.ttr-left {float:left;}
+      .ttrCues .ttrDefCont .ttrCue.ttr-right {float:right;}
     </style>`,
     cueContainer = `<div class="ttrCues"></div>`
 
