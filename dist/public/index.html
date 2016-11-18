@@ -29,6 +29,7 @@
       </video>
       <div id="trackRenderer"></div>
     </div>
+    <input id="trackStyling" placeholder="Add custom styling" />
     <script type="text/javascript" src="hls.js"></script>
     <script type="text/javascript" src="texttrackrenderer.js"></script>
     <script type="text/javascript">
@@ -160,6 +161,16 @@
       document.getElementById('btn-normal-font').addEventListener('click', normSizeFont)
       document.getElementById('btn-larger-font').addEventListener('click', incSizeFont)
       document.getElementById('btn-smaller-font').addEventListener('click', decSizeFont)
+
+      const trackStyling = () => {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+          let styles = `${event.target.value}`
+          document.getElementById('trackRendererView').childNodes[0].innerHTML = styles
+        }
+      }
+
+      document.getElementById('trackStyling').addEventListener('keyup', trackStyling)
 
       ttr.setTextTrack(vt)
     </script>

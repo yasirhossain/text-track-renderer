@@ -134,5 +134,15 @@ document.getElementById('btn-normal-font').addEventListener('click', normSizeFon
 document.getElementById('btn-larger-font').addEventListener('click', incSizeFont)
 document.getElementById('btn-smaller-font').addEventListener('click', decSizeFont)
 
+const trackStyling = () => {
+  event.preventDefault();
+  if (event.keyCode == 13) {
+    let styles = `${event.target.value}`
+    document.getElementById('trackRendererView').childNodes[0].innerHTML = styles
+  }
+}
+
+document.getElementById('trackStyling').addEventListener('keyup', trackStyling)
+
 ttr.setTextTrack(vt)
 //ttr.setTextTrack(t)
