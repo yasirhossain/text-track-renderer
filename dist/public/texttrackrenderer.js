@@ -92,7 +92,7 @@ var TextTrackRenderer =
 	        cueParentCont = div.childNodes[1];
 	
 	    cueParentCont.innerHTML = '';
-	    cueParentCont.innerHTML = '<div class="ttrLineCont"></div><div class="ttrDefCont"></div>';
+	    cueParentCont.innerHTML = '<div class="ttr-line"></div><div class="ttr-container"></div>';
 	
 	    var cueDefCont = cueParentCont.childNodes[0],
 	        cueLineCont = cueParentCont.childNodes[1];
@@ -100,12 +100,12 @@ var TextTrackRenderer =
 	    for (var i = 0; i < track.activeCues.length; i++) {
 	      var cue = track.activeCues[i],
 	          cueText = cue.text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
-	          cueSpan = '<span class="ttrCue ttr-' + cue.align + '" style="' + cueDefStyles + '">' + cueText + '</span>';
+	          cueSpan = '<span class="ttr-cue ttr-' + cue.align + '" style="' + cueDefStyles + '">' + cueText + '</span>';
 	
 	      if (typeof cue.line !== 'number' || cue.line == -1) cueParentCont.childNodes[1].innerHTML += cueSpan;else {
 	        var _cuePosition = 'top:' + (cueHeight * cue.line - cueHeight) + 'px;',
-	            _cueSpan = '<span class="ttrCue ttr-' + cue.align + '" style="' + cueDefStyles + _cuePosition + '">' + cueText + '</span>';
-	        if (cue.align == 'middle') cueParentCont.innerHTML += '<div class="ttrCentered">' + _cueSpan + '</div>';else cueParentCont.childNodes[0].innerHTML += _cueSpan;
+	            _cueSpan = '<span class="ttr-cue ttr-' + cue.align + '" style="' + cueDefStyles + _cuePosition + '">' + cueText + '</span>';
+	        if (cue.align == 'middle') cueParentCont.innerHTML += '<div class="ttr-centered">' + _cueSpan + '</div>';else cueParentCont.childNodes[0].innerHTML += _cueSpan;
 	      }
 	    }
 	  };
@@ -133,8 +133,8 @@ var TextTrackRenderer =
 	  };
 	
 	  var renderStyles = function renderStyles() {
-	    var cueStyleElem = '<style>\n      .ttrCues {\n        width:100%;\n        height:100%;\n        position:absolute;\n        overflow:hidden;\n      }\n      .ttrCues .ttrDefCont {\n        position:absolute;\n        z-index:15;\n        bottom:0;\n        width:100%;\n      }\n      .ttrCues .ttrLineCont, .ttrCues .ttrCentered {\n        position:absolute;\n        height:100%;\n        width:100%;\n        top:0;\n        white-space: nowrap;\n      }\n      .ttrCues .ttrCue {\n        text-align:center;\n        position:absolute;\n        overflow:hidden;\n      }\n      .ttrCues .ttrCue:last-child:after{content:initial;}\n      .ttrCues .ttrCue.ttr-start, .ttrCues span.ttr-left {left:0;right:auto;text-align:left;}\n      .ttrCues .ttrCue.ttr-right{left:auto;right:0;text-align:right;}\n\n      .ttrCues .ttrDefCont .ttrCue,\n      .ttrCues .ttrCentered .ttrCue {position:relative;}\n\n      .ttrCues .ttrDefCont .ttrCue.ttr-start,\n      .ttrCues .ttrDefCont .ttrCue.ttr-left {float:left;}\n      .ttrCues .ttrDefCont .ttrCue.ttr-right {float:right;}\n    </style>',
-	        cueContainer = '<div class="ttrCues"></div>';
+	    var cueStyleElem = '<style>\n      .ttr-cues {\n        width:100%;\n        height:100%;\n        position:absolute;\n        overflow:hidden;\n      }\n      .ttr-cues .ttr-container {\n        position:absolute;\n        z-index:15;\n        bottom:0;\n        width:100%;\n      }\n      .ttr-cues .ttr-line, .ttr-cues .ttr-centered {\n        position:absolute;\n        height:100%;\n        width:100%;\n        top:0;\n        white-space: nowrap;\n      }\n      .ttr-cues .ttr-cue {\n        text-align:center;\n        position:absolute;\n        overflow:hidden;\n      }\n      .ttr-cues .ttr-cue:last-child:after{content:initial;}\n      .ttr-cues .ttr-cue.ttr-start, .ttr-cues span.ttr-left {left:0;right:auto;text-align:left;}\n      .ttr-cues .ttr-cue.ttr-right{left:auto;right:0;text-align:right;}\n\n      .ttr-cues .ttr-container .ttr-cue,\n      .ttr-cues .ttr-centered .ttr-cue {position:relative;}\n\n      .ttr-cues .ttr-container .ttr-cue.ttr-start,\n      .ttr-cues .ttr-container .ttr-cue.ttr-left {float:left;}\n      .ttr-cues .ttr-container .ttr-cue.ttr-right {float:right;}\n    </style>',
+	        cueContainer = '<div class="ttr-cues"></div>';
 	
 	    div.style.position = 'relative';
 	    div.innerHTML = cueStyleElem + cueContainer;
